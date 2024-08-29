@@ -117,7 +117,7 @@ int main()
 				
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << size << " DATA POINT(S)!";
 				cout << endl;
@@ -197,7 +197,7 @@ int main()
 				
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << data2.size() << " DATA POINT(S)!";
 				cout << endl;
