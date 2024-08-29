@@ -59,27 +59,28 @@ int main()
 		}
 		break;
 
-		case '1':
-		{
+		case '1'://for case 1 we the user will be able to choose to calculate their data inputs based
+		{//////////on sample calculations or population calculations
 
 			cout << endl;
 
 			cout << "\n\t\tDATA SET OPTION IS CURRENTLY SET FOR SAMPLE!";
 
 			cout << endl;
-
+			//choice variable will hold the user input of 0 or 1. 0 will be for sample calculations
+			//1 will be for population calculations
 			choice = inputInteger("\n\t\tSELECT THE DATA SET OPTION (0-SAMPLE OR 1-POPULATION): ", 0, 1);
 
-			if (choice == 0)
-			{
+			if (choice == 0)//if choice == 0 all sample in the rest of program will be calculated
+			{/////////////////based on sample based equations
 
 				cout << endl;
 
 				cout << "\n\t\tTHE DATA SET WILL NOW BE SET TO SAMPLE!!";
 
 			}
-			else
-			{
+			else//if choice == 0 all sample in the rest of program will be calculated
+			{/////based on population based equations
 
 				cout << endl;
 
@@ -95,8 +96,8 @@ int main()
 		}
 		break;
 
-		case '2':
-		{
+		case '2'://for case 2 the user will have the chance to input data into our vector object
+		{//////////we will use a switch function to switch between all 3 choices
 
 			data2.clear();
 
@@ -104,12 +105,12 @@ int main()
 
 			cout << endl;
 
-			switch (option1)
+			switch (option1)//switch function will be used to switch between all 3 choices
 			{
-			case 'M':
+			case 'M'://for case M the user will be able to manually input data into our vector
 			{
 
-				size = inputInteger("\n\t\tSPECIFY THE SIZE OF THE ARRAY: ", 3, 200);
+				size = inputInteger("\n\t\tSPECIFY THE SIZE OF THE ARRAY: ", 3, 200);//user will choose size data array
 
 				for (int i = 0; i < size; i++)
 				{
@@ -239,7 +240,7 @@ int main()
 		}
 		break;
 
-		case 'A':
+		case 'A'://for case A we will calculate the minimum integer of our integer data set
 		{
 
 			if (data2.empty())
@@ -285,13 +286,8 @@ int main()
 
 			}
 
-
-			////GIOVANNI PUT YOUR CODE HERE FOR MAXIMUM --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
-
 			//data is sorted so we can just take the last element in the array using the back() method.
 			cout << "\n\t\tMAXIMUM: " << data2.back();
-
-
 
 			cout << endl;
 			cout << endl;
@@ -332,7 +328,7 @@ int main()
 		}
 		break;
 
-		case 'D':
+		case 'D'://for case D we will calculate the size of our integer data set
 		{
 
 			if (data2.empty())
@@ -350,7 +346,7 @@ int main()
 			}
 
 			cout << endl;
-
+			//size function will be called and we will output the result
 			cout << "\n\t\tSIZE: " << data2.size() << " DATA INTEGERS";
 
 			cout << endl;
@@ -379,8 +375,6 @@ int main()
 
 			}
 
-
-			////GIOVANNI PUT YOUR CODE HERE FOR SUM --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
 			//We can use the accumulate function from the numeric header
 			//be sure to #include<numeric> 
 			cout << "\n\t\tSUM: " << accumulate(data2.begin(), data2.end(), 0);
@@ -471,9 +465,6 @@ int main()
 				break;
 
 			}
-
-
-			////GIOVANNI PUT YOUR CODE HERE FOR MODE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
 
 			cout << "\n\t\tMODE: " << findMode(data2);
 
@@ -596,7 +587,6 @@ int main()
 			}
 
 
-			////GIOVANNI PUT YOUR CODE HERE FOR MID RANGE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
 			cout << "\n\t\tMID RANGE: " << midRange(data2);
 
 
@@ -1257,8 +1247,8 @@ void DisplayArray(vector<int>& array1)
 
 }
 
-//
-//
+//Precondition: We will input vector object into this function
+//Postcondition: After running this function the function will find and return the smallest integer in our data set
 int Findminimum(vector<int>& array1)
 {
 
@@ -1282,8 +1272,8 @@ int Findminimum(vector<int>& array1)
 
 }
 
-//
-//
+//Precondition: We will input vector object into this function
+//Postcondition: After this function the function will return the median number in our integer data set
 int Findmedian(vector<int> array1)
 {
 
