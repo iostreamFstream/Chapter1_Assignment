@@ -17,16 +17,8 @@ using namespace std;
 //OSCAR GALLARDO
 //BRISSA HOKE
 //GIOVANNI JIMENEZ
-//test
-//test2
-//teset3
-//another test
-//test7
-//test8
 
 char menuOption();
-void swap(vector<int>& a, vector<int>& b);
-void sortData(vector<int>& array1);
 void DisplayArray(vector<int>& array1);
 void Findminimum(vector<int>& array1);
 void Findmedian(vector<int> array1);
@@ -157,7 +149,7 @@ int main()
 
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << size << " DATA POINT(S)!";
 				cout << endl;
@@ -1189,7 +1181,9 @@ int main()
 
 }
 
-
+//Precondition: none
+//Postcondition: Char menuOption() has been created to display our program
+//Once we run program menu will appear
 char menuOption()
 {
 
@@ -1235,56 +1229,14 @@ char menuOption()
 
 }
 
-
-void swap(vector<int>& a, vector<int>& b)
-{
-
-	vector<int>& temp = a;
-
-	b = temp;
-
-}
-
-void sortData(vector<int>& array1)
-{
-
-	int minIndex;
-	int minValue;
-
-	for(int start = 0; start < array1.size() - 1; start++)
-	{
-		
-		minIndex = start;
-
-		minValue = array1[start];
-
-		for(int index = start + 1; index < array1.size(); index++)
-		{
-			
-			if(array1[index] < minValue)
-			{
-				
-				minValue = array1[index];
-
-				minIndex = index;
-			
-			
-			}
-		
-		}
-
-		swap(array1[minIndex], array1[start]);
-	
-	}
-
-}
-
+//Precondition: Vector object will be input into function
+//Postcondition: After calling function all data available in our vector will be displayed
 void DisplayArray(vector<int>& array1)
 {
 	
 	cout << "\t\t[  ";
 
-	for(int i = 0; i < array1.size(); i++)
+	for(int i = 0; i < array1.size(); i++)//for loop will through all data in our vector and we will output it
 	{
 		
 		cout << array1[i];
@@ -1296,6 +1248,8 @@ void DisplayArray(vector<int>& array1)
 
 }
 
+//
+//
 void Findminimum(vector<int>& array1)
 {
 	
@@ -1319,6 +1273,8 @@ void Findminimum(vector<int>& array1)
 
 }
 
+//
+//
 void Findmedian(vector<int> array1)
 {
 
