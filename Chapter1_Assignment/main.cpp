@@ -17,12 +17,6 @@ using namespace std;
 //OSCAR GALLARDO
 //BRISSA HOKE
 //GIOVANNI JIMENEZ
-//test
-//test2
-//teset3
-//another test
-//test7
-//test8
 
 char menuOption();
 void swap(vector<int>& a, vector<int>& b);
