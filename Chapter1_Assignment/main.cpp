@@ -22,8 +22,8 @@ using namespace std;
 
 char menuOption();
 void DisplayArray(vector<int>& array1);
-void Findminimum(vector<int>& array1);
-void Findmedian(vector<int> array1);
+int Findminimum(vector<int>& array1);
+int Findmedian(vector<int> array1);
 int findMode(vector<int> dataSet);
 float midRange(vector<int> dataSet);
 float rootMeanSquare(vector<int> dataSet);
@@ -122,7 +122,7 @@ int main()
 
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << size << " DATA POINT(S)!";
 				cout << endl;
@@ -154,7 +154,7 @@ int main()
 
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << size << " DATA POINT(S)!";
 				cout << endl;
@@ -202,7 +202,7 @@ int main()
 
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << data2.size() << " DATA POINT(S)!";
 				cout << endl;
@@ -258,7 +258,7 @@ int main()
 
 			cout << endl;
 
-			Findminimum(data2);
+			cout << "\n\t\tMINUMUM: " << Findminimum(data2);
 
 			cout << endl;
 			cout << endl;
@@ -445,7 +445,7 @@ int main()
 
 			cout << endl;
 
-			Findmedian(data2);
+			cout << "\n\t\tMEDIAN: " << Findmedian(data2);
 
 			cout << endl;
 			cout << endl;
@@ -807,9 +807,6 @@ int main()
 				break;
 
 			}
-
-
-			////GIOBANNI PUT YOUR CODE HERE FOR ROOT MEAN SQUARE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
 
 			cout << "\n\t\tRoot Mean Square: " << rootMeanSquare(data2);
 
@@ -1241,59 +1238,17 @@ char menuOption()
 
 }
 
-
-void swap(vector<int>& a, vector<int>& b)
-{
-
-	vector<int>& temp = a;
-
-	b = temp;
-
-}
-
-void sortData(vector<int>& array1)
-{
-
-	int minIndex;
-	int minValue;
-
-	for(int start = 0; start < array1.size() - 1; start++)
-	{
-		
-		minIndex = start;
-
-		minValue = array1[start];
-
-		for(int index = start + 1; index < array1.size(); index++)
-		{
-			
-			if(array1[index] < minValue)
-			{
-				
-				minValue = array1[index];
-
-				minIndex = index;
-			
-			
-			}
-		
-		}
-
-		swap(array1[minIndex], array1[start]);
-	
-	}
-
-}
-
+//Precondition: We will input vector object into this function
+//Postcondition: After running program DisplayArray function should display all data in our vector
 void DisplayArray(vector<int>& array1)
 {
 
 	cout << "\t\t[  ";
 
-	for(int i = 0; i < array1.size(); i++)
+	for(int i = 0; i < array1.size(); i++)//we will use for loop to loop through all data in our vector
 	{
 
-		cout << array1[i];
+		cout << array1[i];//using cout we will output all data in vector
 		cout << ", ";
 
 	}
@@ -1304,7 +1259,7 @@ void DisplayArray(vector<int>& array1)
 
 //
 //
-void Findminimum(vector<int>& array1)
+int Findminimum(vector<int>& array1)
 {
 
 	int minNumber;
@@ -1323,13 +1278,13 @@ void Findminimum(vector<int>& array1)
 
 	}
 
-	cout << "\n\t\tMINIMUM: " << minNumber;
+	return minNumber;
 
 }
 
 //
 //
-void Findmedian(vector<int> array1)
+int Findmedian(vector<int> array1)
 {
 
 	int median = 0;
@@ -1345,7 +1300,7 @@ void Findmedian(vector<int> array1)
 
 		median = array1[input1];
 
-		cout << "\n\t\tMEDIAN: " << median;
+		return median;
 
 	}
 	else
@@ -1357,7 +1312,7 @@ void Findmedian(vector<int> array1)
 
 		median = ((array1[input1] + array1[input2]) / (2));
 
-		cout << "\n\t\tMEDIAN: " << median;
+		return median;
 
 	}
 
