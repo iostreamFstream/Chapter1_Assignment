@@ -249,6 +249,7 @@ int main()
 		case 'A'://for case A we will calculate the minimum integer of our integer data set
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -278,6 +279,7 @@ int main()
 		case 'B':////IN CASE B WE WILL CALCULATE THE MAXIMUM NUMBER IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -306,6 +308,7 @@ int main()
 		case 'C'://IN CASE C WE WILL CALCULATE THE RANGE FOUND IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -337,6 +340,7 @@ int main()
 		case 'D'://for case D we will calculate the size of our integer data set
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -367,6 +371,7 @@ int main()
 		case 'E'://IN CASE E WE WILL CALCULATE THE SUM OF THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -398,6 +403,7 @@ int main()
 		case 'F'://IN CASE F WE WILL CALCULATE THE MEAN OF THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -429,6 +435,7 @@ int main()
 		case 'G':
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -458,6 +465,7 @@ int main()
 		case 'H'://IN CASE H WE WILL CALCULATE THE MODE OF THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -485,6 +493,7 @@ int main()
 		case 'I'://FOR CASE I WE WILL CALCULATE THE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -524,6 +533,7 @@ int main()
 		case 'J'://IN CASE J WE WILL CALCULATE THE VARIANCE OF THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -571,6 +581,7 @@ int main()
 		case 'K'://FOR CASE K WE WILL CALCULATE THE MID RANGE FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -600,6 +611,7 @@ int main()
 		case 'L'://FOR CASE L WE WILL CALCULATE THE QUARTILE FOR THE INTEGERS IN OUR DATA ARRAY///
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -629,6 +641,7 @@ int main()
 		case 'M'://FOR CASE M WE WILL CALCULATE THE INTERQUARTILE RANGE FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -658,6 +671,7 @@ int main()
 		case 'N'://FOR CASE N WE WILL CALCULATE THE OUTLIERS FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -688,6 +702,7 @@ int main()
 		case 'O'://FOR CASE O WE WILL CALCULATE THE SUM OF SQUARES FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -736,6 +751,7 @@ int main()
 		case 'P'://FOR CASE P WE WILL CALCULATE THE MEAN ABSOLUTE DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -765,6 +781,7 @@ int main()
 		case 'Q'://FOR CASE Q WE WILL CALCULATE THE ROOT MEAN SQUARE FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -793,6 +810,7 @@ int main()
 		case 'R'://FOR CASE R WE WILL CALCULATE THE STD ERROR OF THE MEAN FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -840,6 +858,7 @@ int main()
 		case 'S'://FOR CASE S WE WILL CALCULATE THE SKEWNESS FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -880,6 +899,7 @@ int main()
 		case 'T'://FOR CASE T WE WILL CALCULATE THE KURTOSIS FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -927,6 +947,7 @@ int main()
 		case 'U'://FOR CASE U WE WILL CALCULATE THE KURTOSIS EXCESS FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -974,6 +995,7 @@ int main()
 		case 'V'://FOR CASE V WE WILL CALCULATE THE COEFFICIENT OF VARIATION FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -1012,6 +1034,7 @@ int main()
 		case 'W'://FOR CASE W WE WILL CALCULATE THE RELATIVE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -1059,6 +1082,7 @@ int main()
 		case 'X'://FOR CASE X WE WILL CALCULATE THE FREQUENCIES FOR THE INTEGERS IN OUR DATA ARRAY
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -1106,6 +1130,7 @@ int main()
 		case '3':
 		{
 
+			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
 			if (data2.empty())
 			{
 
@@ -1223,19 +1248,19 @@ int Findminimum(vector<int>& array1)
 
 	minNumber = array1[0];//we will set minNumber equal to the first integer in our data set
 
-	for (int i = 1; i < array1.size(); i++)//we will use the for loop to loop through all 
+	for (int i = 1; i < array1.size(); i++)//we will use the for loop to loop through all integers in our data set
 	{
 
-		if (array1[i] < minNumber)
+		if (array1[i] < minNumber)//if statement will be used to compare all integers in order to find the smallest integer
 		{
 
-			minNumber = array1[i];
+			minNumber = array1[i];//once smallest integer is found we will set it equal to minNumber
 
 		}
 
 	}
 
-	return minNumber;
+	return minNumber;//we will return minNumber
 
 }
 
