@@ -24,6 +24,11 @@ char menuOption();
 void DisplayArray(vector<int>& array1);
 int Findminimum(vector<int>& array1);
 int Findmedian(vector<int> array1);
+double FindMeanAbsoluteDeviation(vector<int> array1);
+double FindSkewnessPopulation(vector<int> array1);
+double FindSkewnessSample(vector<int> array1);
+double FindCoefficientOfVariationPopulation(vector<int> array1);
+double FindCoefficientOfVariationSample(vector<int> array1);
 int findMode(vector<int> dataSet);
 float midRange(vector<int> dataSet);
 float rootMeanSquare(vector<int> dataSet);
@@ -1305,6 +1310,55 @@ int Findmedian(vector<int> array1)
 		return median;
 
 	}
+
+}
+
+double FindMeanAbsoluteDeviation(vector<int> array1)
+{
+
+
+
+
+}
+
+double FindSkewnessPopulation(vector<int> array1)
+{
+
+	int calculate = 0;
+
+	int count = 0;
+
+	for(int i = 0; i < array1.size(); i++)
+	{
+	
+		
+	
+	
+	}
+
+}
+
+double FindSkewnessSample(vector<int> array1)
+{
+
+
+
+
+}
+
+double FindCoefficientOfVariationPopulation(vector<int> array1)
+{
+
+
+
+
+}
+
+double FindCoefficientOfVariationSample(vector<int> array1)
+{
+
+
+
 
 }
 
