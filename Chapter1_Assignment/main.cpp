@@ -1315,15 +1315,13 @@ double FindMeanAbsoluteDeviation(vector<int> array1)
 	for (int i = 0; i < array1.size(); i++)
 	{
 
-		calculate = array1[i] - mean;
+		calculate = abs(array1[i] - mean);
 
 		count += calculate;
 
 	}
 
-	absCount = abs(count);
-
-	MAD = absCount / array1.size();
+	MAD = count / array1.size();
 
 	return MAD;
 
