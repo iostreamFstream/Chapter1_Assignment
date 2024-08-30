@@ -25,12 +25,11 @@ void DisplayArray(vector<int>& array1);
 int Findminimum(vector<int>& array1);
 int Findmedian(vector<int> array1);
 double FindMeanAbsoluteDeviation(vector<int> array1);
-double FindStandardDeviationPopulation(vector<int> array1);
-double FindStandardDeviationSample(vector<int> array1);
-double FindSkewnessPopulation(vector<int> array1);
-double FindSkewnessSample(vector<int> array1);
-double FindCoefficientOfVariationPopulation(vector<int> array1);
-double FindCoefficientOfVariationSample(vector<int> array1);
+//double FindStandardDeviationSample(vector<int> array1);
+//double FindSkewnessPopulation(vector<int> array1);
+//double FindSkewnessSample(vector<int> array1);
+//double FindCoefficientOfVariationPopulation(vector<int> array1);
+//double FindCoefficientOfVariationSample(vector<int> array1);
 int findMode(vector<int> dataSet);
 float midRange(vector<int> dataSet);
 float rootMeanSquare(vector<int> dataSet);
@@ -503,13 +502,13 @@ int main()
 			if (choice == 1)
 			{
 
-				cout << "\n\t\tSTANDARD DEVIATION: " << FindStandardDeviationPopulation(data2);
+				//cout << "\n\t\tSTANDARD DEVIATION: " << FindStandardDeviationPopulation(data2);
 
 			}
 			else
 			{
 
-				cout << "\n\t\tSTANDARD DEVIATION: " << FindStandardDeviationSample(data2);
+				//cout << "\n\t\tSTANDARD DEVIATION: " << FindStandardDeviationSample(data2);
 
 
 			}
@@ -858,13 +857,13 @@ int main()
 			if (choice == 1)
 			{
 
-				cout << "\n\t\tSKEWNESS: " << FindSkewnessPopulation(data2);
+				//cout << "\n\t\tSKEWNESS: " << FindSkewnessPopulation(data2);
 
 			}
 			else
 			{
 
-				cout << "\n\t\tSKEWNESS: " << FindSkewnessSample(data2);
+				//cout << "\n\t\tSKEWNESS: " << FindSkewnessSample(data2);
 
 			}
 
@@ -992,13 +991,13 @@ int main()
 			if (choice == 1)
 			{
 
-				cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationPopulation(data2);
+				//cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationPopulation(data2);
 
 			}
 			else
 			{
 
-				cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationSample(data2);
+				//cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationSample(data2);
 
 			}
 
@@ -1220,11 +1219,11 @@ void DisplayArray(vector<int>& array1)
 int Findminimum(vector<int>& array1)
 {
 
-	int minNumber;
+	int minNumber;//minNumber variable will hold the smallest number in our data set
 
-	minNumber = array1[0];
+	minNumber = array1[0];//we will set minNumber equal to the first integer in our data set
 
-	for (int i = 1; i < array1.size(); i++)
+	for (int i = 1; i < array1.size(); i++)//we will use the for loop to loop through all 
 	{
 
 		if (array1[i] < minNumber)
@@ -1311,166 +1310,168 @@ double FindMeanAbsoluteDeviation(vector<int> array1)
 
 //Precondition: 
 //Postcondition:
-double FindStandardDeviationPopulation(vector<int> array1)
-{
-
-	double sum1 = 0.00;
-
-	double calculate = 0.00;
-
-	double std1 = 0.00;
-
-	double sum2 = accumulate(array1.begin(), array1.end(), 0);
-
-	double mean = sum2 / (array1.size());
-
-	for(int i = 0; i < array1.size(); i++)
-	{
-		
-		calculate = pow((array1[i] - mean), 2);
-		
-		sum1 += calculate;
-	
-	}
-
-	std1 = pow((sum1 / array1.size()), 0.5);
-
-	return std1;
-
-}
+//double FindStandardDeviationPopulation(vector<int> array1)
+//{
+//
+//	double sum1 = 0.00;
+//
+//	double calculate = 0.00;
+//
+//	double std1 = 0.00;
+//
+//	double sum2 = accumulate(array1.begin(), array1.end(), 0);
+//
+//	double mean = sum2 / (array1.size());
+//
+//	for(int i = 0; i < array1.size(); i++)
+//	{
+//		
+//		calculate = pow((array1[i] - mean), 2);
+//		
+//		sum1 += calculate;
+//	
+//	}
+//
+//	std1 = pow((sum1 / array1.size()), 0.5);
+//
+//	return std1;
+//
+//}
 
 //Precondition: 
 //Postcondition:
-double FindStandardDeviationSample(vector<int> array1)
-{
-
-	double sum1 = 0.00;
-
-	double calculate = 0.00;
-
-	double std1 = 0.00;
-
-	double sum2 = accumulate(array1.begin(), array1.end(), 0);
-
-	double mean = sum2 / (array1.size());
-
-	for (int i = 0; i < array1.size(); i++)
-	{
-
-		calculate = pow((array1[i] - mean), 2);
-
-		sum1 += calculate;
-
-	}
-
-	std1 = pow((sum1 / (array1.size() - 1)), 0.5);
-
-	return std1;
-
-
-}
-
-//Precondition: We will input vector object into this function
+//double FindStandardDeviationSample(vector<int> array1)
+//{
 //
-double FindSkewnessPopulation(vector<int> array1)
-{
-
-	double sum1 = 0.00;
-
-	double calculate = 0.00;
-
-	double skewness1 = 0.00;
-
-	double std1 = pow((FindStandardDeviationPopulation(array1)), 3);
-
-	double sum2 = accumulate(array1.begin(), array1.end(), 0);
-
-	double mean = sum2 / (array1.size());
-
-	for (int i = 0; i < array1.size(); i++)
-	{
-
-		calculate = pow((array1[i] - mean), 3);
-
-		sum1 += calculate;
-
-	}
-
-	skewness1 = (sum1) / (array1.size() * std1);
-
-	return skewness1;
-
-}
-
-//Precondition: We will input vector object into this function
+//	double sum1 = 0.00;
 //
-double FindSkewnessSample(vector<int> array1)
-{
-
-	double sum1 = 0.00;
-
-	double calculate = 0.00;
-
-	double calculate2 = 0.00;
-
-	double calculate3 = (array1.size() - 1) * (array1.size() - 2);
-
-	double skewness1 = 0.00;
-
-	double std1 = FindStandardDeviationSample(array1);
-
-	double sum2 = accumulate(array1.begin(), array1.end(), 0);
-
-	double mean = sum2 / (array1.size());
-
-	for (int i = 0; i < array1.size(); i++)
-	{
-
-		calculate = pow(((array1[i] - mean) / (std1)), 3);
-
-		sum1 += calculate;
-
-	}
-
-	skewness1 = (array1.size() / calculate3) * (sum1);
-
-	return skewness1;
-
-}
-
-//Precondition: We will input vector object into this function
-//Postcondition: 
-double FindCoefficientOfVariationPopulation(vector<int> array1)
-{
-
-	double cv1 = 0.00;
-
-	double sum1 = accumulate(array1.begin(), array1.end(), 0);
-
-	double mean = sum1 / (array1.size());
-
-	cv1 = FindStandardDeviationPopulation(array1) / mean;
-
-	return cv1;
-
-}
-
-//Precondition: We will input vector object into this function
+//	double calculate = 0.00;
 //
-double FindCoefficientOfVariationSample(vector<int> array1)
-{
+//	double std1 = 0.00;
+//
+//	double sum2 = accumulate(array1.begin(), array1.end(), 0);
+//
+//	double mean = sum2 / (array1.size());
+//
+//	for (int i = 0; i < array1.size(); i++)
+//	{
+//
+//		calculate = pow((array1[i] - mean), 2);
+//
+//		sum1 += calculate;
+//
+//	}
+//
+//	std1 = pow((sum1 / (array1.size() - 1)), 0.5);
+//
+//	return std1;
+//
+//
+//}
 
-	double cv1 = 0.00;
+//Precondition: We will input vector object into this function
+//Postcondition: After calling out this function our program will return the skewness of our data set based on population calculation
+//double FindSkewnessPopulation(vector<int> array1)
+//{
+//
+//	double sum1 = 0.00;
+//
+//	double calculate = 0.00;
+//
+//	double skewness1 = 0.00;
+//
+//	double std1 = pow((FindStandardDeviationPopulation(array1)), 3);
+//
+//	double sum2 = accumulate(array1.begin(), array1.end(), 0);
+//
+//	double mean = sum2 / (array1.size());
+//
+//	for (int i = 0; i < array1.size(); i++)
+//	{
+//
+//		calculate = pow((array1[i] - mean), 3);
+//
+//		sum1 += calculate;
+//
+//	}
+//
+//	skewness1 = (sum1) / (array1.size() * std1);
+//
+//	return skewness1;
+//
+//}
 
-	double sum1 = accumulate(array1.begin(), array1.end(), 0);
+//Precondition: We will input vector object into this function
+//Postcondition: After calling out this function our program will return the skewness of our data set based on sample calculation
+//double FindSkewnessSample(vector<int> array1)
+//{
+//
+//	double sum1 = 0.00;
+//
+//	double calculate = 0.00;
+//
+//	double calculate2 = 0.00;
+//
+//	double calculate3 = (array1.size() - 1) * (array1.size() - 2);
+//
+//	double skewness1 = 0.00;
+//
+//	double std1 = FindStandardDeviationSample(array1);
+//
+//	double sum2 = accumulate(array1.begin(), array1.end(), 0);
+//
+//	double mean = sum2 / (array1.size());
+//
+//	for (int i = 0; i < array1.size(); i++)
+//	{
+//
+//		calculate = pow(((array1[i] - mean) / (std1)), 3);
+//
+//		sum1 += calculate;
+//
+//	}
+//
+//	skewness1 = (array1.size() / calculate3) * (sum1);
+//
+//	return skewness1;
+//
+//}
 
-	double mean = sum1 / (array1.size());
+//Precondition: We will input vector object into this function
+//Postcondition: After calling out this function our program will return the coefficient of variation of our data set
+//////////////// based on population calculation
+//double FindCoefficientOfVariationPopulation(vector<int> array1)
+//{
+//
+//	double cv1 = 0.00;
+//
+//	double sum1 = accumulate(array1.begin(), array1.end(), 0);
+//
+//	double mean = sum1 / (array1.size());
+//
+//	cv1 = FindStandardDeviationPopulation(array1) / mean;
+//
+//	return cv1;
+//
+//}
 
-	cv1 = FindStandardDeviationSample(array1) / mean;
-
-	return cv1;
-
-}
+//Precondition: We will input vector object into this function
+//Postcondition: After calling out this function our program will return the coefficient of variation of our data set
+//////////////// based on sample calculation
+//double FindCoefficientOfVariationSample(vector<int> array1)
+//{
+//
+//	double cv1 = 0.00;
+//
+//	double sum1 = accumulate(array1.begin(), array1.end(), 0);
+//
+//	double mean = sum1 / (array1.size());
+//
+//	cv1 = FindStandardDeviationSample(array1) / mean;
+//
+//	return cv1;
+//
+//}
 
 int findMode(vector<int> dataSet)
 {
