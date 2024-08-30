@@ -756,25 +756,7 @@ int main()
 
 			}
 
-			if (choice == 1)
-			{
-
-				///put population calculation here
-
-
-			}
-			else
-			{
-
-				//put sample calculation here
-
-
-			}
-
-
-			////****THIS ONE IS FOR ME I'LL FINISH IT SOON
-
-
+			cout << "\n\t\tMEAN ABSOLUTE DEVIATION: " << FindMeanAbsoluteDeviation(data2);
 
 			cout << endl;
 			cout << endl;
@@ -1313,31 +1295,51 @@ int Findmedian(vector<int> array1)
 
 }
 
+//Precondition: We will input vector object into this function
+//Postcondition: 
 double FindMeanAbsoluteDeviation(vector<int> array1)
-{
-
-
-
-
-}
-
-double FindSkewnessPopulation(vector<int> array1)
 {
 
 	int calculate = 0;
 
 	int count = 0;
 
-	for(int i = 0; i < array1.size(); i++)
+	int absCount = 0;
+
+	double MAD = 0.00;
+
+	int sum = accumulate(array1.begin(), array1.end(), 0);
+
+	double mean = sum / (array1.size());
+
+	for (int i = 0; i < array1.size(); i++)
 	{
-	
-		
-	
-	
+
+		calculate = array1[i] - mean;
+
+		count += calculate;
+
 	}
+
+	absCount = abs(count);
+
+	MAD = absCount / array1.size();
+
+	return MAD;
 
 }
 
+//Precondition: We will input vector object into this function
+//
+double FindSkewnessPopulation(vector<int> array1)
+{
+
+
+
+}
+
+//Precondition: We will input vector object into this function
+//
 double FindSkewnessSample(vector<int> array1)
 {
 
@@ -1346,6 +1348,8 @@ double FindSkewnessSample(vector<int> array1)
 
 }
 
+//Precondition: We will input vector object into this function
+//
 double FindCoefficientOfVariationPopulation(vector<int> array1)
 {
 
@@ -1354,6 +1358,8 @@ double FindCoefficientOfVariationPopulation(vector<int> array1)
 
 }
 
+//Precondition: We will input vector object into this function
+//
 double FindCoefficientOfVariationSample(vector<int> array1)
 {
 
