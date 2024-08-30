@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
-#include<unordered_map>
+#include <unordered_map>
 #include <algorithm>
 #include <fstream>
 #include <cmath>
@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include <vector>
 #include <list>
-#include<numeric>
+#include <numeric>
 #include "input.h"
 using namespace std;
 
@@ -19,8 +19,6 @@ using namespace std;
 //OSCAR GALLARDO
 //BRISSA HOKE
 //GIOVANNI JIMENEZ
-//test
-//test2
 
 char menuOption();
 void DisplayArray(vector<int>& array1);
@@ -1266,65 +1264,66 @@ int Findminimum(vector<int>& array1)
 int Findmedian(vector<int> array1)
 {
 
-	int median = 0;
+	int median = 0;//variable median will hold the median of our data set
 
-	int input1 = 0;
+	int index1 = 0;//variable index1 will hold the index of our data with an odd number of integers
 
-	int input2 = 0;
+	int index2 = 0;//variable index2 will hold the index of our data with an even number of integers
 
-	if (array1.size() % 2 != 0)
+	if (array1.size() % 2 != 0)//if our data set has an odd number of integers then this will calculation will be called
 	{
 
-		input1 = (array1.size() / 2);
+		index1 = (array1.size() / 2);//we will divide the size of our data set by 2
 
-		median = array1[input1];
+		median = array1[index1];//we will find the integer at index1
 
-		return median;
+		return median;//we will return median
 
 	}
-	else
+	else//if our data set has even number of integers then this calculation will be called
 	{
 
-		input1 = (array1.size() - 1) / (2);
+		index1 = (array1.size() - 1) / (2);//we will divide the size of our data set minus 1 by 2
 
-		input2 = array1.size() / 2;
+		index2 = array1.size() / 2;//we will divide the size of our data set by 2
 
-		median = ((array1[input1] + array1[input2]) / (2));
+		median = ((array1[index1] + array1[index2]) / (2));//we will add the integer located at index1 with index2 and divide the sum by 2
 
-		return median;
+		return median;//we will return median
 
 	}
 
 }
 
 //Precondition: We will input vector object into this function
-//Postcondition: 
+//Postcondition: After calling this function the function will return the mean absolute deviation of the integers in our data set
 double FindMeanAbsoluteDeviation(vector<int> array1)
 {
 
-	double calculate = 0.00;
+	double calculate = 0.00;//variable calculate will hold the absolute value of all integers in our data subtracted by the mean
 
-	double count = 0.00;
+	double count = 0.00;//variable count will hold the sum of the absolute value of all integers in our data subtracted by the mean
 
-	double absCount = 0.00;
+	double MAD = 0.00;//variable MAD will hold the mean absolute deviation of our data set
 
-	double MAD = 0.00;
+	double sum = accumulate(array1.begin(), array1.end(), 0);//we will calculate the sum of all the integers in our data set
 
-	double sum = accumulate(array1.begin(), array1.end(), 0);
-
+	//mean will calculate the mean of our data set by dividing sum by the size of our array
 	double mean = sum / (array1.size());
 
-	for (int i = 0; i < array1.size(); i++)
+	for (int i = 0; i < array1.size(); i++)//using this for loop we will loop through all of the integers in our data set
 	{
 
-		calculate = abs(array1[i] - mean);
+		calculate = abs(array1[i] - mean);//we will take the absolute value of the integers in our data set subtracted by the mean
 
-		count += calculate;
+		count += calculate;//we will add all the results from our variable calculate
 
 	}
 
+	//we will divide count by the size of our array in order to get the mean absolute deviation
 	MAD = count / array1.size();
 
+	//we will return the mean absolute deviation
 	return MAD;
 
 }
