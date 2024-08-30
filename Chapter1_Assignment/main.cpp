@@ -25,10 +25,10 @@ void DisplayArray(vector<int>& array1);
 int Findminimum(vector<int>& array1);
 int Findmedian(vector<int> array1);
 double FindMeanAbsoluteDeviation(vector<int> array1);
-double FindSkewnessPopulation(vector<int> array1);
-double FindSkewnessSample(vector<int> array1);
-double FindCoefficientOfVariationPopulation(vector<int> array1);
-double FindCoefficientOfVariationSample(vector<int> array1);
+//double FindSkewnessPopulation(vector<int> array1);
+//double FindSkewnessSample(vector<int> array1);
+//double FindCoefficientOfVariationPopulation(vector<int> array1);
+//double FindCoefficientOfVariationSample(vector<int> array1);
 int findMode(vector<int> dataSet);
 float midRange(vector<int> dataSet);
 float rootMeanSquare(vector<int> dataSet);
@@ -1300,15 +1300,15 @@ int Findmedian(vector<int> array1)
 double FindMeanAbsoluteDeviation(vector<int> array1)
 {
 
-	int calculate = 0;
+	double calculate = 0.00;
 
-	int count = 0;
+	double count = 0.00;
 
-	int absCount = 0;
+	double absCount = 0.00;
 
 	double MAD = 0.00;
 
-	int sum = accumulate(array1.begin(), array1.end(), 0);
+	double sum = accumulate(array1.begin(), array1.end(), 0);
 
 	double mean = sum / (array1.size());
 
@@ -1331,42 +1331,42 @@ double FindMeanAbsoluteDeviation(vector<int> array1)
 
 //Precondition: We will input vector object into this function
 //
-double FindSkewnessPopulation(vector<int> array1)
-{
-
-
-
-}
+//double FindSkewnessPopulation(vector<int> array1)
+//{
+//
+//
+//
+//}
 
 //Precondition: We will input vector object into this function
 //
-double FindSkewnessSample(vector<int> array1)
-{
-
-
-
-
-}
+//double FindSkewnessSample(vector<int> array1)
+//{
+//
+//
+//
+//
+//}
 
 //Precondition: We will input vector object into this function
 //
-double FindCoefficientOfVariationPopulation(vector<int> array1)
-{
-
-
-
-
-}
+//double FindCoefficientOfVariationPopulation(vector<int> array1)
+//{
+//
+//
+//
+//
+//}
 
 //Precondition: We will input vector object into this function
 //
-double FindCoefficientOfVariationSample(vector<int> array1)
-{
-
-
-
-
-}
+//double FindCoefficientOfVariationSample(vector<int> array1)
+//{
+//
+//
+//
+//
+//}
 
 int findMode(vector<int> dataSet)
 {
