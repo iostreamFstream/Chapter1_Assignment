@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include<unordered_map>
 #include <algorithm>
 #include <fstream>
 #include <cmath>
@@ -9,6 +10,7 @@
 #include <cstdlib>
 #include <vector>
 #include <list>
+#include<numeric>
 #include "input.h"
 using namespace std;
 
@@ -19,16 +21,19 @@ using namespace std;
 //GIOVANNI JIMENEZ
 //test
 //test2
-//test4
-//test5
-//test77
 
 char menuOption();
-void swap(vector<int>& a, vector<int>& b);
-void sortData(vector<int>& array1);
 void DisplayArray(vector<int>& array1);
-void Findminimum(vector<int>& array1);
-void Findmedian(vector<int> array1);
+int Findminimum(vector<int>& array1);
+int Findmedian(vector<int> array1);
+double FindMeanAbsoluteDeviation(vector<int> array1);
+//double FindSkewnessPopulation(vector<int> array1);
+//double FindSkewnessSample(vector<int> array1);
+//double FindCoefficientOfVariationPopulation(vector<int> array1);
+//double FindCoefficientOfVariationSample(vector<int> array1);
+int findMode(vector<int> dataSet);
+float midRange(vector<int> dataSet);
+float rootMeanSquare(vector<int> dataSet);
 
 
 int main()
@@ -48,8 +53,8 @@ int main()
 
 	do
 	{
-		
-		switch(menuOption())
+
+		switch (menuOption())
 		{
 		case '0':
 		{
@@ -57,48 +62,49 @@ int main()
 			data2.clear();
 
 			exit(0);
-		
+
 		}
 		break;
-		
-		case '1':
-		{
+
+		case '1'://for case 1 we the user will be able to choose to calculate their data inputs based
+		{//////////on sample calculations or population calculations
 
 			cout << endl;
-			
+
 			cout << "\n\t\tDATA SET OPTION IS CURRENTLY SET FOR SAMPLE!";
 
 			cout << endl;
-
+			//choice variable will hold the user input of 0 or 1. 0 will be for sample calculations
+			//1 will be for population calculations
 			choice = inputInteger("\n\t\tSELECT THE DATA SET OPTION (0-SAMPLE OR 1-POPULATION): ", 0, 1);
 
-			if(choice == 0)
-			{
+			if (choice == 0)//if choice == 0 all sample in the rest of program will be calculated
+			{/////////////////based on sample based equations
 
 				cout << endl;
-			
+
 				cout << "\n\t\tTHE DATA SET WILL NOW BE SET TO SAMPLE!!";
-			
+
 			}
-			else
-			{
+			else//if choice == 0 all sample in the rest of program will be calculated
+			{/////based on population based equations
 
 				cout << endl;
-			
+
 				cout << "\n\t\tTHE DATA SET WILL NOW BE SET TO POPULATION!!";
-			
+
 			}
 
 			cout << endl;
 			cout << endl;
-			
+
 			system("pause");
-		
+
 		}
 		break;
 
-		case '2':
-		{
+		case '2'://for case 2 the user will have the chance to input data into our vector object
+		{//////////we will use a switch function to switch between all 3 choices
 
 			data2.clear();
 
@@ -106,25 +112,25 @@ int main()
 
 			cout << endl;
 
-			switch(option1)
+			switch (option1)//switch function will be used to switch between all 3 choices
 			{
-			case 'M':
+			case 'M'://for case M the user will be able to manually input data into our vector
 			{
 
-				size = inputInteger("\n\t\tSPECIFY THE SIZE OF THE ARRAY: ", 3, 200);
+				size = inputInteger("\n\t\tSPECIFY THE SIZE OF THE ARRAY: ", 3, 200);//user will choose size data array
 
-				for(int i = 0; i < size; i++)
+				for (int i = 0; i < size; i++)
 				{
-					cout << "\n\t\tPLEASE ENTER INTEGER " << i + 1 << ": "; 
+					cout << "\n\t\tPLEASE ENTER INTEGER " << i + 1 << ": ";
 
 					input1 = inputInteger("", 1, 100);
 
 					data2.push_back(input1);
-					
-				
+
+
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << size << " DATA POINT(S)!";
 				cout << endl;
@@ -136,7 +142,7 @@ int main()
 
 				system("pause");
 
-			
+
 			}
 			break;
 
@@ -149,14 +155,14 @@ int main()
 
 				for (int i = 0; i < size; i++)
 				{
-				
+
 					input1 = rand() % 100 + 1;
 
 					data2.push_back(input1);
 
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << size << " DATA POINT(S)!";
 				cout << endl;
@@ -167,7 +173,7 @@ int main()
 				cout << endl;
 
 				system("pause");
-			
+
 			}
 			break;
 
@@ -177,12 +183,12 @@ int main()
 				cout << endl;
 
 				file1 = inputString("\n\t\tENTER THE NAME OF THE FILE FOR ANALYSIS: ", true);
-				
+
 				datafile.open(file1, ios::in);
 
-				if(datafile.fail())
+				if (datafile.fail())
 				{
-				
+
 					cout << "\n\t\tSORRY THIS FILE DOES NOT EXIST!! TRY AGAIN!!";
 
 					cout << endl;
@@ -191,20 +197,20 @@ int main()
 					system("pause");
 
 					break;
-				
+
 				}
 
-				while(!datafile.eof())
+				while (!datafile.eof())
 				{
 
 					datafile >> input1;
-				
+
 					data2.push_back(input1);
-				
-				
+
+
 				}
 
-				sortData(data2);
+				sort(data2.begin(), data2.end());
 
 				cout << "\n\t\tDATA SET CONTAINS " << data2.size() << " DATA POINT(S)!";
 				cout << endl;
@@ -217,7 +223,7 @@ int main()
 				cout << endl;
 
 				system("pause");
-			
+
 			}
 			break;
 
@@ -229,50 +235,21 @@ int main()
 				system("pause");
 
 				break;
-			
+
 			}
 			break;
-			
-			
+
+
 			}
 
-		
-		
-		}
-		break;
-		
-		case 'A':
-		{
 
-			if(data2.empty())
-			{
-			
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
 
-				cout << endl;
-				cout << endl;
-
-				system("pause");
-
-				break;
-			
-			}
-
-			cout << endl;
-
-			Findminimum(data2);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-		
 		}
 		break;
 
-		case 'B':////IN CASE B WE WILL CALCULATE THE MAXIMUM NUMBER IN OUR DATA ARRAY
+		case 'A'://for case A we will calculate the minimum integer of our integer data set
 		{
-		
+
 			if (data2.empty())
 			{
 
@@ -287,22 +264,49 @@ int main()
 
 			}
 
+			cout << endl;
 
-			////GIOVANNI PUT YOUR CODE HERE FOR MAXIMUM --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
-
-
+			cout << "\n\t\tMINUMUM: " << Findminimum(data2);
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
-		
+
+		}
+		break;
+
+		case 'B':////IN CASE B WE WILL CALCULATE THE MAXIMUM NUMBER IN OUR DATA ARRAY
+		{
+
+			if (data2.empty())
+			{
+
+				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+
+				cout << endl;
+				cout << endl;
+
+				system("pause");
+
+				break;
+
+			}
+
+			//data is sorted so we can just take the last element in the array using the back() method.
+			cout << "\n\t\tMAXIMUM: " << data2.back();
+
+			cout << endl;
+			cout << endl;
+
+			system("pause");
+
 		}
 		break;
 
 		case 'C'://IN CASE C WE WILL CALCULATE THE RANGE FOUND IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -326,12 +330,12 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
-		
+
+
 		}
 		break;
 
-		case 'D':
+		case 'D'://for case D we will calculate the size of our integer data set
 		{
 
 			if (data2.empty())
@@ -349,7 +353,7 @@ int main()
 			}
 
 			cout << endl;
-
+			//size function will be called and we will output the result
 			cout << "\n\t\tSIZE: " << data2.size() << " DATA INTEGERS";
 
 			cout << endl;
@@ -357,10 +361,10 @@ int main()
 
 			system("pause");
 
-		
+
 		}
 		break;
-		
+
 		case 'E'://IN CASE E WE WILL CALCULATE THE SUM OF THE INTEGERS IN OUR DATA ARRAY
 		{
 
@@ -378,23 +382,23 @@ int main()
 
 			}
 
-
-			////GIOVANNI PUT YOUR CODE HERE FOR SUM --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
-
+			//We can use the accumulate function from the numeric header
+			//be sure to #include<numeric> 
+			cout << "\n\t\tSUM: " << accumulate(data2.begin(), data2.end(), 0);
 
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
-		
-		
+
+
 		}
 		break;
 
 		case 'F'://IN CASE F WE WILL CALCULATE THE MEAN OF THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -419,13 +423,13 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 		case 'G':
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -442,19 +446,19 @@ int main()
 
 			cout << endl;
 
-			Findmedian(data2);
+			cout << "\n\t\tMEDIAN: " << Findmedian(data2);
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 		case 'H'://IN CASE H WE WILL CALCULATE THE MODE OF THE INTEGERS IN OUR DATA ARRAY
 		{
-		
+
 			if (data2.empty())
 			{
 
@@ -469,22 +473,19 @@ int main()
 
 			}
 
-
-			////GIOVANNI PUT YOUR CODE HERE FOR MODE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
-
-
+			cout << "\n\t\tMODE: " << findMode(data2);
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 		case 'I'://FOR CASE I WE WILL CALCULATE THE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -499,19 +500,19 @@ int main()
 
 			}
 
-			if(choice == 1)
+			if (choice == 1)
 			{
-			
+
 				///put population calculation here
-			
+
 			}
 			else
 			{
-			
-				//put sample calculation here
-			
 
-			
+				//put sample calculation here
+
+
+
 			}
 
 
@@ -524,13 +525,13 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 		case 'J'://IN CASE J WE WILL CALCULATE THE VARIANCE OF THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -570,14 +571,14 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
-		
+
+
 		}
 		break;
 
 		case 'K'://FOR CASE K WE WILL CALCULATE THE MID RANGE FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -593,20 +594,20 @@ int main()
 			}
 
 
-			////GIOVANNI PUT YOUR CODE HERE FOR MID RANGE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
+			cout << "\n\t\tMID RANGE: " << midRange(data2);
 
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 		case 'L'://FOR CASE L WE WILL CALCULATE THE QUARTILE FOR THE INTEGERS IN OUR DATA ARRAY///
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -629,13 +630,13 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 		case 'M'://FOR CASE M WE WILL CALCULATE THE INTERQUARTILE RANGE FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -658,13 +659,13 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 		case 'N'://FOR CASE N WE WILL CALCULATE THE OUTLIERS FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -687,14 +688,14 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
-		
+
+
 		}
 		break;
 
 		case 'O'://FOR CASE O WE WILL CALCULATE THE SUM OF SQUARES FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -734,15 +735,15 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
-		
+
+
 		}
 		break;
 
 
 		case 'P'://FOR CASE P WE WILL CALCULATE THE MEAN ABSOLUTE DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -757,39 +758,21 @@ int main()
 
 			}
 
-			if (choice == 1)
-			{
-
-				///put population calculation here
-
-
-			}
-			else
-			{
-
-				//put sample calculation here
-
-
-			}
-
-
-			////****THIS ONE IS FOR ME I'LL FINISH IT SOON
-
-
+			cout << "\n\t\tMEAN ABSOLUTE DEVIATION: " << FindMeanAbsoluteDeviation(data2);
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
-			
-		
+
+
 		}
 		break;
 
 
 		case 'Q'://FOR CASE Q WE WILL CALCULATE THE ROOT MEAN SQUARE FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-		
+
 			if (data2.empty())
 			{
 
@@ -804,22 +787,20 @@ int main()
 
 			}
 
-
-			////GIOBANNI PUT YOUR CODE HERE FOR ROOT MEAN SQUARE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
-
+			cout << "\n\t\tRoot Mean Square: " << rootMeanSquare(data2);
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 
 		case 'R'://FOR CASE R WE WILL CALCULATE THE STD ERROR OF THE MEAN FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-		
+
 			if (data2.empty())
 			{
 
@@ -859,14 +840,14 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 
 		case 'S'://FOR CASE S WE WILL CALCULATE THE SKEWNESS FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -905,8 +886,8 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
-		
+
+
 		}
 		break;
 
@@ -953,14 +934,14 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
-		
+
+
 		}
 		break;
 
 		case 'U'://FOR CASE U WE WILL CALCULATE THE KURTOSIS EXCESS FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -1000,14 +981,14 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 
 		case 'V'://FOR CASE V WE WILL CALCULATE THE COEFFICIENT OF VARIATION FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -1046,13 +1027,13 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
+
 		}
 		break;
 
 		case 'W'://FOR CASE W WE WILL CALCULATE THE RELATIVE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 		{
-			
+
 			if (data2.empty())
 			{
 
@@ -1093,12 +1074,12 @@ int main()
 
 			system("pause");
 
-		
+
 		}
 		break;
 
 		case 'X'://FOR CASE X WE WILL CALCULATE THE FREQUENCIES FOR THE INTEGERS IN OUR DATA ARRAY
-		{	
+		{
 
 			if (data2.empty())
 			{
@@ -1139,14 +1120,14 @@ int main()
 			cout << endl;
 
 			system("pause");
-		
-		
+
+
 		}
 		break;
 
 		case '3':
 		{
-		
+
 			if (data2.empty())
 			{
 
@@ -1163,7 +1144,7 @@ int main()
 
 
 			////BRISSA PUT YOUR CODE HERE FOR CASE 3
-			
+
 
 
 
@@ -1171,15 +1152,15 @@ int main()
 			cout << endl;
 
 			system("pause");
-			
-		
+
+
 		}
 		break;
-		
-		
+
+
 		}
-	
-	
+
+
 	} while (true);
 
 	return EXIT_SUCCESS;
@@ -1188,12 +1169,14 @@ int main()
 
 }
 
-
+//Precondition: none
+//Postcondition: Char menuOption() has been created to display our program
+//Once we run program menu will appear
 char menuOption()
 {
 
 	system("cls");
-	
+
 	cout << "\n\tDESCRIPTIVE STATISTICS ARE BRIEF DESCRIPTIVE COEFFICIENTS THAT SUMMARIZE A GIVEN DATA SET,";
 	cout << "\n\tWHICH CAN BE EITHER A REPRESENTATION OF THE ENTIRE POPULATION OR A SAMPLE OF A POPULATION.";
 	cout << "\n\tDESCRIPTIVE STATISTICS ARE BROKEN DOWN INTO MEASURES OF CENTRAL TENDENCY AND MEASURE OF";
@@ -1234,91 +1217,53 @@ char menuOption()
 
 }
 
-
-void swap(vector<int>& a, vector<int>& b)
-{
-
-	vector<int>& temp = a;
-
-	b = temp;
-
-}
-
-void sortData(vector<int>& array1)
-{
-
-	int minIndex;
-	int minValue;
-
-	for(int start = 0; start < array1.size() - 1; start++)
-	{
-		
-		minIndex = start;
-
-		minValue = array1[start];
-
-		for(int index = start + 1; index < array1.size(); index++)
-		{
-			
-			if(array1[index] < minValue)
-			{
-				
-				minValue = array1[index];
-
-				minIndex = index;
-			
-			
-			}
-		
-		}
-
-		swap(array1[minIndex], array1[start]);
-	
-	}
-
-}
-
+//Precondition: We will input vector object into this function
+//Postcondition: After running program DisplayArray function should display all data in our vector
 void DisplayArray(vector<int>& array1)
 {
-	
+
 	cout << "\t\t[  ";
 
-	for(int i = 0; i < array1.size(); i++)
+	for(int i = 0; i < array1.size(); i++)//we will use for loop to loop through all data in our vector
 	{
-		
-		cout << array1[i];
+
+		cout << array1[i];//using cout we will output all data in vector
 		cout << ", ";
-	
+
 	}
 
 	cout << " ]";
 
 }
 
-void Findminimum(vector<int>& array1)
+//Precondition: We will input vector object into this function
+//Postcondition: After running this function the function will find and return the smallest integer in our data set
+int Findminimum(vector<int>& array1)
 {
-	
+
 	int minNumber;
 
 	minNumber = array1[0];
 
-	for(int i = 1; i < array1.size(); i++)
+	for (int i = 1; i < array1.size(); i++)
 	{
-	
-		if(array1[i] < minNumber)
+
+		if (array1[i] < minNumber)
 		{
-			
+
 			minNumber = array1[i];
-		
+
 		}
-	
+
 	}
 
-	cout << "\n\t\tMINIMUM: " << minNumber;
+	return minNumber;
 
 }
 
-void Findmedian(vector<int> array1)
+//Precondition: We will input vector object into this function
+//Postcondition: After this function the function will return the median number in our integer data set
+int Findmedian(vector<int> array1)
 {
 
 	int median = 0;
@@ -1327,27 +1272,138 @@ void Findmedian(vector<int> array1)
 
 	int input2 = 0;
 
-	if(array1.size() % 2 != 0)
+	if (array1.size() % 2 != 0)
 	{
 
 		input1 = (array1.size() / 2);
 
 		median = array1[input1];
-	
-		cout << "\n\t\tMEDIAN: " << median;
-	
+
+		return median;
+
 	}
 	else
 	{
-	
+
 		input1 = (array1.size() - 1) / (2);
 
 		input2 = array1.size() / 2;
 
 		median = ((array1[input1] + array1[input2]) / (2));
 
-		cout << "\n\t\tMEDIAN: " << median;
-	
+		return median;
+
 	}
 
+}
+
+//Precondition: We will input vector object into this function
+//Postcondition: 
+double FindMeanAbsoluteDeviation(vector<int> array1)
+{
+
+	double calculate = 0.00;
+
+	double count = 0.00;
+
+	double absCount = 0.00;
+
+	double MAD = 0.00;
+
+	double sum = accumulate(array1.begin(), array1.end(), 0);
+
+	double mean = sum / (array1.size());
+
+	for (int i = 0; i < array1.size(); i++)
+	{
+
+		calculate = abs(array1[i] - mean);
+
+		count += calculate;
+
+	}
+
+	MAD = count / array1.size();
+
+	return MAD;
+
+}
+
+//Precondition: We will input vector object into this function
+//
+//double FindSkewnessPopulation(vector<int> array1)
+//{
+//
+//
+//
+//}
+
+//Precondition: We will input vector object into this function
+//
+//double FindSkewnessSample(vector<int> array1)
+//{
+//
+//
+//
+//
+//}
+
+//Precondition: We will input vector object into this function
+//
+//double FindCoefficientOfVariationPopulation(vector<int> array1)
+//{
+//
+//
+//
+//
+//}
+
+//Precondition: We will input vector object into this function
+//
+//double FindCoefficientOfVariationSample(vector<int> array1)
+//{
+//
+//
+//
+//
+//}
+
+int findMode(vector<int> dataSet)
+{
+	unordered_map<int, int> hash;
+	for (int i = 0; i < dataSet.size(); i++)
+		hash[dataSet[i]]++;
+
+	int max_count = 0, res = -1;
+	for (auto i : hash)
+	{
+		if (max_count < i.second)
+		{
+			res = i.first;
+			max_count = i.second;
+		}
+	}
+
+	return res;
+}
+
+float midRange(vector<int> dataSet)
+{
+	float midRange = (static_cast<float>(dataSet[0]) + static_cast<float>(dataSet.back())) / 2;
+	return midRange;
+}
+
+float rootMeanSquare(vector<int> dataSet)
+{
+	int square = 0;
+	float mean = 0.0, root = 0.0;
+
+	for (int i = 0; i < dataSet.size(); i++)
+		square += pow(dataSet[i], 2);
+
+	mean = (square / (float)(dataSet.size()));
+
+	root = sqrt(mean);
+
+	return root;
 }
