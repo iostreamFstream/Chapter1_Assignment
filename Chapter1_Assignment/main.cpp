@@ -31,8 +31,9 @@ double FindMeanAbsoluteDeviation(vector<int> array1);
 //double FindCoefficientOfVariationPopulation(vector<int> array1);
 //double FindCoefficientOfVariationSample(vector<int> array1);
 int findMode(vector<int> dataSet);
-float midRange(vector<int> dataSet);
-float rootMeanSquare(vector<int> dataSet);
+double midRange(vector<int> dataSet);
+double rootMeanSquare(vector<int> dataSet);
+void frequencyOfDataSet(vector<int> dataSet);
 
 
 int main()
@@ -1097,24 +1098,11 @@ int main()
 
 			}
 
-			if (choice == 1)
-			{
-
-				///put population calculation here
-
-			}
-			else
-			{
-
-				//put sample calculation here
-
-
-
-			}
-
 
 			////GIOVANNI PUT YOUR CODE HERE FOR FREQUENCIES
 			////2 DIFFERENT FUNCTIONS NEEDED FOR SAMPLE AND POPULATION
+			//function is the same for sample and population for frequencies
+			frequencyOfDataSet(data2);
 
 
 
@@ -1517,13 +1505,13 @@ int findMode(vector<int> dataSet)
 	return res;
 }
 
-float midRange(vector<int> dataSet)
+double midRange(vector<int> dataSet)
 {
 	float midRange = (static_cast<float>(dataSet[0]) + static_cast<float>(dataSet.back())) / 2;
 	return midRange;
 }
 
-float rootMeanSquare(vector<int> dataSet)
+double rootMeanSquare(vector<int> dataSet)
 {
 	int square = 0;
 	float mean = 0.0, root = 0.0;
@@ -1536,4 +1524,47 @@ float rootMeanSquare(vector<int> dataSet)
 	root = sqrt(mean);
 
 	return root;
+}
+
+//double varianceSample(vector<int> dataSet)
+//{
+//	/*
+//	double mean = getMean(dataSet);
+//	double sqDifference = 0.0;
+//
+//	for(int i = 0; i < dataSet.size(); i++)
+//		sqDifference += pow(dataSet[i] - mean,2);
+//
+//		return sqDifference / (dataSet.size() - 1);
+//	*/
+//}
+
+//double variancePopulation(vector<int> dataSet)
+//{
+//	/*
+//	double mean = getMean(dataSet);
+//	double sqDifference = 0.0;
+//
+//	for(int i = 0; i < dataSet.size(); i++)
+//		sqDifference += pow(dataSet[i] - mean,2);
+//
+//		return sqDifference / dataSet.size();
+//*/
+//}
+
+void frequencyOfDataSet(vector<int> dataSet)
+{
+	map<int, int> frequencyMap;
+
+	for (int i = 0; i < dataSet.size(); i++)
+		frequencyMap[dataSet[i]]++;
+
+	cout << "\n\tFrequency Table: \n";
+	cout << "\tVALUE: \t\tFREQUENCY:\t\tFREQUENCY %:\n";
+	cout << "\t" << string(60, 196) << "\n";
+
+	for (auto& i : frequencyMap)
+	{
+		cout << "\t" << i.first << " \t\t\t " << i.second << " \t\t\t" << static_cast<float>(i.second) / static_cast<float>(dataSet.size()) * 100 << "%\n";
+	}
 }
