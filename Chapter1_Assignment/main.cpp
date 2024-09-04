@@ -49,20 +49,25 @@ void displayData(vector<int> dataSet, bool isPop);
 void printDataToFile(vector<int> dataSet, bool isPop);
 
 
-
 int main()
 {
 
+	//
 	int size = 0;
 
+	//
 	string file1 = "unknown";
 
+	//
 	int choice = 0;
 
+	//
 	fstream datafile;
 
+	//
 	int input1 = 0;
 
+	//
 	vector<int> data2;
 
 	do
@@ -70,11 +75,12 @@ int main()
 
 		switch (menuOption())
 		{
-		case '0':
+		case '0'://
 		{
-
+			//
 			data2.clear();
 
+			//
 			exit(0);
 
 		}
@@ -120,8 +126,10 @@ int main()
 		case '2'://for case 2 the user will have the chance to input data into our vector object
 		{//////////we will use a switch function to switch between all 3 choices
 
+			//
 			data2.clear();
 
+			//
 			char option1 = inputChar("\n\t\tCHOOSE AN OPTION (M) - MANUAL, (R) - RANDOM, (F) - FILE, OR (X) - RETURN: ", static_cast<string>("MRFX"));
 
 			cout << endl;
@@ -131,24 +139,31 @@ int main()
 			case 'M'://for case M the user will be able to manually input data into our vector
 			{
 
+				//
 				size = inputInteger("\n\t\tSPECIFY THE SIZE OF THE ARRAY: ", 3, 200);//user will choose size data array
 
+				//
 				for (int i = 0; i < size; i++)
 				{
 					cout << "\n\t\tPLEASE ENTER INTEGER " << i + 1 << ": ";
 
+					//
 					input1 = inputInteger("", 1, 100);
 
+					//
 					data2.push_back(input1);
 
 
 				}
 
+				//
 				sort(data2.begin(), data2.end());
 
+				//
 				cout << "\n\t\tDATA SET CONTAINS " << size << " DATA POINT(S)!";
 				cout << endl;
 
+				//
 				DisplayArray(data2);
 
 				cout << endl;
@@ -160,27 +175,33 @@ int main()
 			}
 			break;
 
-			case 'R':
+			case 'R'://
 			{
-
+				//
 				srand(time(0));
 
+				//
 				size = inputInteger("\n\t\tSPECIFY THE SIZE OF THE ARRAY: ", 3, 200);
 
+				//
 				for (int i = 0; i < size; i++)
 				{
-
+					//
 					input1 = rand() % 100 + 1;
 
+					//
 					data2.push_back(input1);
 
 				}
 
+				//
 				sort(data2.begin(), data2.end());
 
+				//
 				cout << "\n\t\tDATA SET CONTAINS " << size << " DATA POINT(S)!";
 				cout << endl;
 
+				//
 				DisplayArray(data2);
 
 				cout << endl;
@@ -191,15 +212,18 @@ int main()
 			}
 			break;
 
-			case 'F':
+			case 'F'://
 			{
 
 				cout << endl;
 
+				//
 				file1 = inputString("\n\t\tENTER THE NAME OF THE FILE FOR ANALYSIS: ", true);
 
+				//
 				datafile.open(file1, ios::in);
 
+				//
 				if (datafile.fail())
 				{
 
@@ -214,23 +238,27 @@ int main()
 
 				}
 
-				while (!datafile.eof())
+				while (!datafile.eof())//
 				{
-
+					//
 					datafile >> input1;
 
+					//
 					data2.push_back(input1);
-
 
 				}
 
+				//
 				sort(data2.begin(), data2.end());
 
+				//
 				cout << "\n\t\tDATA SET CONTAINS " << data2.size() << " DATA POINT(S)!";
 				cout << endl;
 
+				//
 				DisplayArray(data2);
 
+				//
 				datafile.close();
 
 				cout << endl;
@@ -281,6 +309,7 @@ int main()
 
 			cout << endl;
 
+			//we will call our Findminimum function and output the results
 			cout << "\n\t\tMINUMUM: " << Findminimum(data2);
 
 			cout << endl;
@@ -444,7 +473,7 @@ int main()
 		}
 		break;
 
-		case 'G':
+		case 'G'://for case G we will calculate the median of our data set
 		{
 
 			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
@@ -464,6 +493,7 @@ int main()
 
 			cout << endl;
 
+			//we will call the Findmedian function and output our results
 			cout << "\n\t\tMEDIAN: " << Findmedian(data2);
 
 			cout << endl;
@@ -562,12 +592,6 @@ int main()
 
 			}
 
-
-			////GIOVANNI PUT YOUR CODE HERE FOR VARIANCE
-			////2 DIFFERENT FUNCTIONS NEEDED FOR SAMPLE AND POPULATION
-
-
-
 			cout << endl;
 			cout << endl;
 
@@ -640,8 +664,6 @@ int main()
 			}
 
 
-
-
 			cout << endl;
 			cout << endl;
 
@@ -699,7 +721,7 @@ int main()
 			}
 
 
-			////GIOBANNI PUT YOUR CODE HERE FOR OUTLIERS --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
+			////GIOVANNI PUT YOUR CODE HERE FOR OUTLIERS --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
 
 
 			cout << endl;
@@ -850,15 +872,15 @@ int main()
 
 			}
 
-			if (choice == 1)
+			if (choice == 1)//if the user chooses 1 in part 1 then the population skewness will be calculated
 			{
-
+				//we will call the FindSkewnessPopulation function and output the result
 				cout << "\n\t\tSKEWNESS: " << FindSkewnessPopulation(data2, choice);
 
 			}
-			else
+			else//if the user chooses 1 in part 1 then the population skewness will be calculated
 			{
-
+				//we will call the FindSkewnessPopulation function and output the result
 				cout << "\n\t\tSKEWNESS: " << FindSkewnessSample(data2, choice);
 
 			}
@@ -894,24 +916,18 @@ int main()
 			if (choice == 1)
 			{
 
-				///put population calculation here
+				//
 				cout << "\n\tKurtosis of Population: " << findKurtosisPopulation(data2);
 
 			}
 			else
 			{
 
-				//put sample calculation here
+				//
 				cout << "\n\tKurtosis of Sample: " << findKurtosisSample(data2);
 
 
 			}
-
-
-			////GIOVANNI PUT YOUR CODE HERE FOR KURTOSIS
-			////2 DIFFERENT FUNCTIONS NEEDED FOR SAMPLE AND POPULATION
-
-
 
 			cout << endl;
 			cout << endl;
@@ -942,8 +958,6 @@ int main()
 
 			cout << "\n\t\tKurtosis Excess : " << findKurtosisExcess(data2, choice);
 
-
-
 			cout << endl;
 			cout << endl;
 
@@ -971,15 +985,15 @@ int main()
 
 			}
 
-			if (choice == 1)
+			if (choice == 1)//
 			{
-
+				//we will call the FindSCoefficientOFVariationPopulation function and output the result
 				cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationPopulation(data2, choice);
 
 			}
-			else
+			else//
 			{
-
+				//we will call the FindSCoefficientOFVariationSample function and output the result
 				cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationSample(data2, choice);
 
 			}
@@ -1012,8 +1026,6 @@ int main()
 
 			cout << "\n\t\tRelative Standard Deviation : " << findRelativeSTDDeviation(data2, choice);
 
-
-
 			cout << endl;
 			cout << endl;
 
@@ -1040,25 +1052,19 @@ int main()
 				break;
 
 			}
-
-
-			////GIOVANNI PUT YOUR CODE HERE FOR FREQUENCIES
-			////2 DIFFERENT FUNCTIONS NEEDED FOR SAMPLE AND POPULATION
-			//function is the same for sample and population for frequencies
+			
+			//
 			frequencyOfDataSet(data2);
-
-
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
 
-
 		}
 		break;
 
-		case '3':
+		case '3'://for case 3 we will ouput all calculations to a text file
 		{
 
 			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
@@ -1076,24 +1082,18 @@ int main()
 
 			}
 
-
 			displayData(data2, choice);
 			printDataToFile(data2, choice);
-
-
 
 			cout << endl;
 			cout << endl;
 
 			system("pause");
 
-
 		}
 		break;
 
-
 		}
-
 
 	} while (true);
 
@@ -1105,7 +1105,7 @@ int main()
 
 //Precondition: none
 //Postcondition: Char menuOption() has been created to display our program
-//Once we run program menu will appear
+//Once we run program this menu will appear
 char menuOption()
 {
 
@@ -1269,30 +1269,30 @@ double FindMeanAbsoluteDeviation(vector<int> array1)
 double FindSkewnessPopulation(vector<int> array1, bool isPop)
 {
 
-	double sum1 = 0.00;
+	double sum1 = 0.00;//sum1 variable will hold the sum of all integers of our data set subtracted by the mean of our data set
 
-	double calculate = 0.00;
+	double calculate = 0.00;//calculate variable will hold subtraction of the integers in our data set by the mean of our data set
 
-	double skewness1 = 0.00;
+	double skewness1 = 0.00;//variable skewness will hold the skewness of our data set
 
-	double std1 = pow((findStandardDeviation(array1, isPop)), 3);
+	double std1 = pow((findStandardDeviation(array1, isPop)), 3);//we will calculation the standard deviation
 
-	double sum2 = accumulate(array1.begin(), array1.end(), 0);
+	double sum2 = accumulate(array1.begin(), array1.end(), 0);//we will calculate the sum of the integers in our data set
 
-	double mean = sum2 / (array1.size());
+	double mean = sum2 / (findMean(array1));//we will calculate the mean of our data set
 
-	for (int i = 0; i < array1.size(); i++)
+	for (int i = 0; i < array1.size(); i++)//for loop will loop through all of the integers in our data set
 	{
 
-		calculate = pow((array1[i] - mean), 3);
+		calculate = pow((array1[i] - mean), 3);//we will subtract the integers of our data set by the mean and raise it to power of 3
 
-		sum1 += calculate;
+		sum1 += calculate;//we will add all numbers calculated from our calculate variable
 
 	}
 
-	skewness1 = (sum1) / (array1.size() * std1);
+	skewness1 = (sum1) / (array1.size() * std1);//we will calculate skewmess of the population calculation
 
-	return skewness1;
+	return skewness1;//we will return skewness
 
 }
 
@@ -1301,34 +1301,32 @@ double FindSkewnessPopulation(vector<int> array1, bool isPop)
 double FindSkewnessSample(vector<int> array1, bool isPop)
 {
 
-	double sum1 = 0.00;
+	double sum1 = 0.00;//sum1 variable will hold the sum of all integers of our data set subtracted by the mean of our data set
 
-	double calculate = 0.00;
+	double calculate = 0.00;///calculate variable will hold subtraction of the integers in our data set by the mean of our data set and divided by the standard deviation
 
-	double calculate2 = 0.00;
+	double calculate3 = (array1.size() - 1) * (array1.size() - 2);//calculate variable will hold subtraction of the integers in our data set
 
-	double calculate3 = (array1.size() - 1) * (array1.size() - 2);
+	double skewness1 = 0.00;//variable skewness will hold the skewness of our data set
 
-	double skewness1 = 0.00;
+	double std1 = findStandardDeviation(array1, isPop);//we will calculation the standard deviation
 
-	double std1 = findStandardDeviation(array1, isPop);
+	double sum2 = accumulate(array1.begin(), array1.end(), 0);//we will calculate the sum of the integers in our data set
 
-	double sum2 = accumulate(array1.begin(), array1.end(), 0);
+	double mean = sum2 / (findMean(array1));//we will calculate the mean of our data set
 
-	double mean = sum2 / (array1.size());
-
-	for (int i = 0; i < array1.size(); i++)
+	for (int i = 0; i < array1.size(); i++)//for loop will loop through all of the integers in our data set
 	{
 
-		calculate = pow(((array1[i] - mean) / (std1)), 3);
+		calculate = pow(((array1[i] - mean) / (std1)), 3);//we will subtract the integers of our data set by the mean, we will divide this value by the standard deviation and raise it to power of 3
 
-		sum1 += calculate;
+		sum1 += calculate;//we will add all numbers calculated from our calculate variable
 
 	}
 
-	skewness1 = (array1.size() / calculate3) * (sum1);
+	skewness1 = (array1.size() / calculate3) * (sum1);//we will calculate skewness of the sample calculation
 
-	return skewness1;
+	return skewness1;//we will return skewness
 
 }
 
@@ -1338,15 +1336,15 @@ double FindSkewnessSample(vector<int> array1, bool isPop)
 double FindCoefficientOfVariationPopulation(vector<int> array1, bool isPop)
 {
 
-	double cv1 = 0.00;
+	double cv1 = 0.00;//
 
-	double sum1 = accumulate(array1.begin(), array1.end(), 0);
+	double sum1 = accumulate(array1.begin(), array1.end(), 0);//
 
-	double mean = sum1 / (array1.size());
+	double mean = sum1 / (findMean(array1));//
 
-	cv1 = findStandardDeviation(array1, isPop) / mean;
+	cv1 = findStandardDeviation(array1, isPop) / mean;//
 
-	return cv1;
+	return cv1;//
 
 }
 
@@ -1356,15 +1354,15 @@ double FindCoefficientOfVariationPopulation(vector<int> array1, bool isPop)
 double FindCoefficientOfVariationSample(vector<int> array1, bool isPop)
 {
 
-	double cv1 = 0.00;
+	double cv1 = 0.00;//
 
-	double sum1 = accumulate(array1.begin(), array1.end(), 0);
+	double sum1 = accumulate(array1.begin(), array1.end(), 0);//
 
-	double mean = sum1 / (array1.size());
+	double mean = sum1 / (findMean(array1));//
 
-	cv1 = findStandardDeviation(array1, isPop) / mean;
+	cv1 = findStandardDeviation(array1, isPop) / mean;//
 
-	return cv1;
+	return cv1;//
 
 }
 
