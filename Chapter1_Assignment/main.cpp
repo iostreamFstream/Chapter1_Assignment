@@ -34,6 +34,16 @@ int findMode(vector<int> dataSet);
 double midRange(vector<int> dataSet);
 double rootMeanSquare(vector<int> dataSet);
 void frequencyOfDataSet(vector<int> dataSet);
+int findRange(vector<int> dataSet);
+double findMean(vector<int> dataSet);
+double findStandardDeviation(vector<int> dataSet, bool isPop);
+double* findQuartiles(vector<int> dataSet);
+double findSumOfSquares(vector<int> dataSet);
+double findSTDErrorOfMean(vector<int> dataSet, bool isPop);
+double findKurtosisExcess(vector<int> dataSet, bool isPop);
+double findRelativeSTDDeviation(vector<int> dataSet, bool isPop);
+void displayData(vector<int> dataSet, bool isPop);
+void printDataToFile(vector<int> dataSet, bool isPop);
 
 
 int main()
@@ -325,7 +335,7 @@ int main()
 			}
 
 
-			////BRISSA PUT YOUR CODE HERE FOR RANGE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
+			cout << "\n\t\tRange : " << findRange(data2);
 
 
 
@@ -419,10 +429,7 @@ int main()
 
 			}
 
-
-			////BRISSA PUT YOUR CODE HERE FOR MEAN ---
-			////THE WEBSITE SHOWS 2 DIFFERENT CALCULATIONS FOR MEAN FOR SAMPLE AND POPULATION BUT THEY BOTH
-			///GIVE THE SAME ANSWER SO YOU DON'T NEED TO DO 2 DIFFERENT FUNCTIONS
+			cout << "\n\t\tMean : " << findMean(data2);
 
 
 			cout << endl;
@@ -509,19 +516,8 @@ int main()
 
 			}
 
-			if (choice == 1)
-			{
 
-				//cout << "\n\t\tSTANDARD DEVIATION: " << FindStandardDeviationPopulation(data2);
-
-			}
-			else
-			{
-
-				//cout << "\n\t\tSTANDARD DEVIATION: " << FindStandardDeviationSample(data2);
-
-
-			}
+			cout << "\n\t\tStandard Deviation : " << findStandardDeviation(data2, choice);
 
 			cout << endl;
 			cout << endl;
@@ -627,8 +623,21 @@ int main()
 
 			}
 
+			cout << "\n\t\tQuartiles : ";
+			double* quartPtr = findQuartiles(data2);
+			double quartiles[3];
+			for (int i = 0; i < 3; i++)
+				quartiles[i] = *(quartPtr + i);
+			
+			for (int i = 0; i < 3; i++)
+			{
 
-			////BRISSA PUT YOUR CODE HERE FOR QUARTILE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
+				cout << quartiles[i];
+				if (i != 2)
+					cout << ", ";
+			}
+
+
 
 
 			cout << endl;
@@ -718,25 +727,7 @@ int main()
 
 			}
 
-			if (choice == 1)
-			{
-
-				///put population calculation here
-
-			}
-			else
-			{
-
-				//put sample calculation here
-
-
-
-			}
-
-
-			////BRISSA PUT YOUR CODE HERE FOR SUM OF SQUARES
-			////2 DIFFERENT FUNCTIONS NEEDED FOR SAMPLE AND POPULATION
-
+			cout << "\n\t\tSum of Squares : " << findSumOfSquares(data2);
 
 
 			cout << endl;
@@ -826,24 +817,7 @@ int main()
 
 			}
 
-			if (choice == 1)
-			{
-
-				///put population calculation here
-
-			}
-			else
-			{
-
-				//put sample calculation here
-
-
-
-			}
-
-
-			////BRISSA PUT YOUR CODE HERE FOR STD ERROR OF THE MEAN
-			////2 DIFFERENT FUNCTIONS NEEDED FOR SAMPLE AND POPULATION
+			cout << "\n\t\tStandard Error of the Mean : " << findSTDErrorOfMean(data2, choice);
 
 
 
@@ -963,24 +937,7 @@ int main()
 
 			}
 
-			if (choice == 1)
-			{
-
-				///put population calculation here
-
-			}
-			else
-			{
-
-				//put sample calculation here
-
-
-
-			}
-
-
-			////BRISSA PUT YOUR CODE HERE FOR KURTOSIS EXCESS
-			////2 DIFFERENT FUNCTIONS NEEDED FOR SAMPLE AND POPULATION
+			cout << "\n\t\tKurtosis Excess : " << findKurtosisExcess(data2, choice);
 
 
 
@@ -1050,24 +1007,7 @@ int main()
 
 			}
 
-			if (choice == 1)
-			{
-
-				///put population calculation here
-
-			}
-			else
-			{
-
-				//put sample calculation here
-
-
-
-			}
-
-
-			////BRISSA PUT YOUR CODE HERE FOR RELATIVE STD DEVIATION
-			////2 DIFFERENT FUNCTIONS NEEDED FOR SAMPLE AND POPULATION
+			cout << "\n\t\tRelative Standard Deviation : " << findRelativeSTDDeviation(data2, choice);
 
 
 
@@ -1134,8 +1074,8 @@ int main()
 			}
 
 
-			////BRISSA PUT YOUR CODE HERE FOR CASE 3
-
+			displayData(data2, choice);
+			printDataToFile(data2, choice);
 
 
 
@@ -1567,4 +1507,195 @@ void frequencyOfDataSet(vector<int> dataSet)
 	{
 		cout << "\t" << i.first << " \t\t\t " << i.second << " \t\t\t" << static_cast<float>(i.second) / static_cast<float>(dataSet.size()) * 100 << "%\n";
 	}
+}
+
+
+
+
+//pre: data set is needed
+//post: returns the range of the data set
+int findRange(vector<int> dataSet)
+{
+	//return findMaxmimum(dataSet) - findMinimum(dataSet);
+	return 0;
+}
+
+//pre: data set is needed
+//post: returns the mean of the data set
+double findMean(vector<int> dataSet)
+{
+	double sum = accumulate(dataSet.begin(), dataSet.end(), 0.0);
+
+	return sum / static_cast<double>(dataSet.size());
+}
+//pre: data set is needed and if it is sample or population
+//post: returns the standard deviation of the data set based on wether it is sample or population
+double findStandardDeviation(vector<int> dataSet, bool isPop)
+{
+	double sum = 0.0;
+	double size = static_cast<double>(dataSet.size());
+
+	for (int i = 0; i < dataSet.size(); i++)
+		sum += pow(static_cast<double>(dataSet[i]) - findMean(dataSet), 2.0);
+	if (isPop) // equation for population option
+		sum /= size;
+
+	else // equation for sample option
+		sum /= (size - 1.0);
+
+	double answer = sqrt(sum);
+
+	return answer;
+}
+
+//pre: 
+//post: 
+double* findQuartiles(vector<int> dataSet)
+{
+	double quartiles[3];
+	vector<int> firstHalf;
+	vector<int> secondHalf;
+	int median = Findmedian(dataSet);
+
+	quartiles[1] = median;
+	if (dataSet.size() % 2 == 0) //if the array size is even
+	{
+		for (int i = 0; i < (dataSet.size() / 2); i++)
+			firstHalf.push_back(dataSet[i]);
+
+		for (int i = (dataSet.size() / 2); i < dataSet.size(); i++)
+			secondHalf.push_back(dataSet[i]);
+	}
+	else //if the array size is odd
+	{
+		for (int i = 0; i < (dataSet.size() / 2) + 1; i++)
+			firstHalf.push_back(dataSet[i]);
+
+		for (int i = (dataSet.size() / 2) - 1; i < dataSet.size(); i++)
+			secondHalf.push_back(dataSet[i]);
+	}
+	
+	quartiles[0] = Findmedian(firstHalf);
+	quartiles[2] = Findmedian(secondHalf);
+
+	return quartiles;
+}
+
+//pre: 
+//post: 
+double findSumOfSquares(vector<int> dataSet)
+{
+	double mean = findMean(dataSet);
+	double sum = 0;
+	for (int i = 0; i < dataSet.size(); i++)
+		sum += pow(static_cast<double>(dataSet[i]) - findMean(dataSet), 2.0);
+
+	return sum;
+}
+
+//pre: 
+//post: 
+double findSTDErrorOfMean(vector<int> dataSet, bool isPop)
+{
+	double size = static_cast<double>(dataSet.size());
+	double answer = findStandardDeviation(dataSet, isPop) / sqrt(size);
+
+	return answer;
+}
+
+//pre: 
+//post: 
+double findKurtosisExcess(vector<int> dataSet, bool isPop)
+{
+	double kurtosis = 0;
+	//kurtosis = findKurtosis();
+
+	if (isPop)
+		return kurtosis - 3;
+	else
+	{
+		double size = static_cast<double>(dataSet.size());
+		double subtract = pow(size - 1, 2) * 3;
+		subtract /= (size - 2) * (size - 3);
+		return kurtosis - subtract;
+	}
+
+}
+
+//pre: 
+//post: 
+double findRelativeSTDDeviation(vector<int> dataSet, bool isPop)
+{
+	double answer = (findStandardDeviation(dataSet, isPop) * 100) / findMean(dataSet);
+	return answer;
+}
+
+//pre: 
+//post: 
+void displayData(vector<int> dataSet, bool isPop)
+{
+	//int size = static_cast<int>(dataSet.size());
+	//cout << "Descriptive statistics summarize certain aspects of a sample data set using numeric calculations.";
+	//cout << "\n\nData set contains " << size << " data point(s):\n";
+
+	////displaying the data set elements
+	// DisplayArray(dataSet);
+
+	//cout << "\nMinimum = " << findMinimum(dataSet)
+	//	<< "\nMaximum = " << findMaximum(dataSet)
+	//	<< "\nRange = " << findRange(dataSet)
+	//	<< "\nSize = " << size
+	//	<< "\nSum = " << findSum(dataSet)
+	//	<< "\nMean = " << findMean(dataSet)
+	//	<< "\nMedian = " << findMedian(dataSet)
+	//	<< "\nMode = " << findMode(dataSet);
+
+	//cout << "\nStandard Deviation = " << findStandardDeviation(dataSet, isPop)
+	//	<< "\nVariance = " << findVariance(dataSet)
+	//	<< "\nMid Range = " << findMidRange(dataSet)
+	//	<< "\nQuartiles = ";
+
+	/*double* quartPtr = findQuartiles(dataSet);
+	double quartiles[3];
+	for (int i = 0; i < 3; i++)
+		quartiles[i] = *(quartPtr + i);
+
+	for (int i = 0; i < 3; i++)
+	{
+		cout << quartiles[i];
+		if (i != 2)
+			cout << ", ";
+	}*/
+
+	//	cout << "\nInterquartile Range = " << findInterQuartRange(dataSet)
+	//	<< "\nOutliers = " << findOutliers(dataSet)
+	//	<< "\nSum of Squares = " << findSumOfSquares(dataSet)
+	//	<< "\nMean Absolute Deviation = " << findMeanAbsoluteDeviation(dataSet)
+	//	<< "\nRoot Mean Square = " << findRootMeanSqu(dataSet)
+	//	<< "\nStd Error of Mean = " << findSTDErrorOfMean(dataSet)
+	//	<< "\nSkewness = " << findSkewness(dataSet)
+	//	<< "\nKurtosis = " << findKurtosis(dataSet)
+	//	<< "\nKurtosis Excess = " << findKurtosisExcess(dataSet)
+	//	<< "\nCoefficient of Variation = " << findCoefOfVariant(dataSet)
+	//	<< "\nRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
+	//	<< "\nFrequency Table";
+	
+}
+
+//pre: 
+//post: 
+void printDataToFile(vector<int> dataSet, bool isPop)
+{
+	ofstream outFile;
+	string fileName;
+
+	cout << "\n\tEnter a output file name : ";
+	cin >> fileName;
+
+	outFile.open(fileName, ios::out);
+
+
+
+	outFile.close();
+
 }
