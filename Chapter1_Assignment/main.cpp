@@ -23,7 +23,7 @@ using namespace std;
 char menuOption();
 void DisplayArray(vector<int>& array1);
 int Findminimum(vector<int>& array1);
-int Findmedian(vector<int> array1);
+double Findmedian(vector<int> array1);
 double FindMeanAbsoluteDeviation(vector<int> array1);
 double FindSkewnessPopulation(vector<int> array1, bool isPop);
 double FindSkewnessSample(vector<int> array1, bool isPop);
@@ -1197,10 +1197,10 @@ int Findminimum(vector<int>& array1)
 
 //Precondition: We will input vector object into this function
 //Postcondition: After this function the function will return the median number in our integer data set
-int Findmedian(vector<int> array1)
+double Findmedian(vector<int> array1)
 {
 
-	int median = 0;//variable median will hold the median of our data set
+	double median = 0.00;//variable median will hold the median of our data set
 
 	int index1 = 0;//variable index1 will hold the index of our data with an odd number of integers
 
