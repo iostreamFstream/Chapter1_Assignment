@@ -1,0 +1,49 @@
+	Descriptive statistics summarize certain aspects of a sample data set using numeric calculations.
+
+	Data set contains 8 data point(s):
+5, 15, 44, 45, 47, 50, 65, 83
+
+
+		Minimum = 5
+
+		Maximum = 83
+
+		Range = 78
+
+		Size = 8
+
+		Sum = 354
+
+		Mean = 44.25
+
+		Median = 46
+
+		Mode = 45
+
+		Standard Deviation = 24.9843
+
+		Variance = 0
+
+		Mid Range = 44
+
+		Quartiles = 29, 46, 57
+
+		Sum of Squares = 4369.5
+
+		Mean Absolute Deviation = 17.1875
+
+		Root Mean Square = 50.0425
+
+		Std Error of Mean = 8.83328
+
+		Skewness = 0
+
+		Kurtosis = 0
+
+		Kurtosis Excess = -5.84966
+
+		Coefficient of Variation = 0
+
+		Relative Standard Deviation = 56.4617%
+
+		Frequency Table
