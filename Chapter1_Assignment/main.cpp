@@ -34,6 +34,11 @@ int findMode(vector<int> dataSet);
 double midRange(vector<int> dataSet);
 double rootMeanSquare(vector<int> dataSet);
 void frequencyOfDataSet(vector<int> dataSet);
+double findKurtosisPopulation(vector<int> dataSet);
+double findKurtosisSample(vector<int> dataSet);
+double varianceSample(vector<int> dataSet);
+double variancePopulation(vector<int> dataSet);
+
 
 
 int main()
@@ -552,15 +557,13 @@ int main()
 			if (choice == 1)
 			{
 
-				///put population calculation here
+				cout << "\n\tVariance of Population: " << variancePopulation(data2);
 
 			}
 			else
 			{
 
-				//put sample calculation here
-
-
+				cout << "\n\tVariance of Sample: " << varianceSample(data2);
 
 			}
 
@@ -919,13 +922,14 @@ int main()
 			{
 
 				///put population calculation here
+				cout << "\n\tKurtosis of Population: " << findKurtosisPopulation(data2);
 
 			}
 			else
 			{
 
 				//put sample calculation here
-
+				cout << "\n\tKurtosis of Sample: " << findKurtosisSample(data2);
 
 
 			}
@@ -1486,6 +1490,8 @@ double FindMeanAbsoluteDeviation(vector<int> array1)
 //
 //}
 
+//Precondition: vector<int>
+//Postcondition: returns the number in the data set that occurs most frequently
 int findMode(vector<int> dataSet)
 {
 	unordered_map<int, int> hash;
@@ -1505,12 +1511,16 @@ int findMode(vector<int> dataSet)
 	return res;
 }
 
+//Precondition vector<int>
+//Postcondition: Returns the mid range of the data set.
 double midRange(vector<int> dataSet)
 {
 	float midRange = (static_cast<float>(dataSet[0]) + static_cast<float>(dataSet.back())) / 2;
 	return midRange;
 }
 
+//Precondition: vector<int>
+//Postcondition: returns the Root Mean Square of the dataset.
 double rootMeanSquare(vector<int> dataSet)
 {
 	int square = 0;
@@ -1526,32 +1536,38 @@ double rootMeanSquare(vector<int> dataSet)
 	return root;
 }
 
-//double varianceSample(vector<int> dataSet)
-//{
-//	/*
-//	double mean = getMean(dataSet);
-//	double sqDifference = 0.0;
-//
-//	for(int i = 0; i < dataSet.size(); i++)
-//		sqDifference += pow(dataSet[i] - mean,2);
-//
-//		return sqDifference / (dataSet.size() - 1);
-//	*/
-//}
+//Precondition: Vector<int>
+//Postcondition: returns the variance of a SAMPLE data set.
+double varianceSample(vector<int> dataSet)
+{
+	double sum = accumulate(dataSet.begin(), dataSet.end(), 0.0);
+	double mean = sum / dataSet.size();
+	double sqDifference = 0.0;
 
-//double variancePopulation(vector<int> dataSet)
-//{
-//	/*
-//	double mean = getMean(dataSet);
-//	double sqDifference = 0.0;
-//
-//	for(int i = 0; i < dataSet.size(); i++)
-//		sqDifference += pow(dataSet[i] - mean,2);
-//
-//		return sqDifference / dataSet.size();
-//*/
-//}
+	for(int i = 0; i < dataSet.size(); i++)
+		sqDifference += pow(dataSet[i] - mean,2);
 
+		return sqDifference / (dataSet.size() - 1);
+	
+}
+
+//Precondition: Vector<int>
+//Postcondition: returns the variance of a POPULATION data set.
+double variancePopulation(vector<int> dataSet)
+{
+	double sum = accumulate(dataSet.begin(), dataSet.end(), 0.0);
+	double mean = sum / dataSet.size();
+	double sqDifference = 0.0;
+
+	for(int i = 0; i < dataSet.size(); i++)
+		sqDifference += pow(dataSet[i] - mean,2);
+
+		return sqDifference / dataSet.size();
+}
+
+
+//Precondition: Vector<int>
+//Postcondition: Displays a frequency table of every index in the data set.
 void frequencyOfDataSet(vector<int> dataSet)
 {
 	map<int, int> frequencyMap;
@@ -1568,3 +1584,85 @@ void frequencyOfDataSet(vector<int> dataSet)
 		cout << "\t" << i.first << " \t\t\t " << i.second << " \t\t\t" << static_cast<float>(i.second) / static_cast<float>(dataSet.size()) * 100 << "%\n";
 	}
 }
+
+//Precondition: Vector<int>
+//Postcondition: returns the kurtosis of a POPULATION data set.
+double findKurtosisPopulation(vector<int> dataSet)
+{
+	double kurtosis = 0.0;
+	int size = dataSet.size();
+	double mean = static_cast<double>((accumulate(dataSet.begin(), dataSet.end(), 0.0))) / dataSet.size();
+
+	double fourthMoment = 0.0, secondMoment = 0.0;
+
+	for (double num : dataSet)
+	{
+		fourthMoment += pow(num - mean, 4);
+		secondMoment += pow(num - mean, 2);
+	}
+
+	fourthMoment /= size;
+	secondMoment /= size;
+
+	kurtosis = (size * fourthMoment) / (secondMoment * secondMoment) - 3;
+
+	return kurtosis;
+}
+
+//Precondition: Vector<int>
+//Postcondition: Returns the Kurtosis of a SAMPLE data set.
+double findKurtosisSample(vector<int> dataSet)
+{
+	double kurtosis = 0.0;
+	int size = dataSet.size();
+	double mean = static_cast<double>((accumulate(dataSet.begin(), dataSet.end(), 0))) / size;
+
+	double fourthMoment = 0.0, secondMoment = 0.0;
+
+	for (double num : dataSet)
+	{
+		fourthMoment += pow(num - mean, 4);
+		secondMoment += pow(num - mean, 2);
+	}
+
+	fourthMoment /= size;
+	secondMoment /= (size - 1);
+
+	kurtosis = ((size * (size + 1) * fourthMoment) / ((size - 1) * (size - 2) * pow(secondMoment, 2))) - (3 * (size - 1) * (size - 1)) / ((size - 2) * (size - 3));
+
+	return kurtosis;
+}
+
+//IQR:PROTOTYPE:
+//double findIQR(vector<int> dataSet)
+//{
+//	//need the Quartiles to finish this function:
+//	double q3 = FINDQUARTILES(dataSet);
+//	double q1 = FINDQUARTILES(dataSet);
+//
+//	//Calcuation is Quartile 3 minus Quartile 1
+//	//NEED QUARTILES FUNCTION FOR THIS ONE
+//	return q3 - q1;
+//}
+
+
+//OUTLIERS: PROTOTYPE:
+//NEED QUARTERLIES FUNCTION FOR THIS!!!
+//vector<int> findOutliers(vector<int> dataSet)
+//{
+//	vector<int> outliers;
+//	double IQR = findIQR(dataSet);
+//	double q3 = findQuarterlies(dataSet);
+//	double q1 = findQuarterlies(dataSet);
+//
+//	double lowerBound = q1 - 1.5 * IQR;
+//	double upperBound = q3 + 1.5 * IQR;
+//
+//	for (double x : dataSet)
+//	{
+//		if (x < lowerBound || x > upperBound)
+//			outliers.push_back(x);
+//	}
+//
+//	return outliers;
+//}
