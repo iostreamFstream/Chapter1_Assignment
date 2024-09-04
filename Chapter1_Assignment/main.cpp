@@ -1606,7 +1606,7 @@ double findKurtosisSample(vector<int> dataSet)
 //
 //	return outliers;
 //}
-}
+
 
 
 
@@ -1778,7 +1778,7 @@ void displayData(vector<int> dataSet, bool isPop)
 	//	<< "\nCoefficient of Variation = " << findCoefOfVariant(dataSet)
 	//	<< "\nRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 	//	<< "\nFrequency Table";
-	
+
 }
 
 //pre: 
