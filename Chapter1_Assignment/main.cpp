@@ -288,89 +288,13 @@ int main()
 
 		}
 		break;
-
-		case 'A'://for case A we will calculate the minimum integer of our integer data set
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
-			{
-
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
-
-				cout << endl;
-				cout << endl;
-
-				system("pause");
-
-				break;
-
-			}
-
-			cout << endl;
-
-			//we will call our Findminimum function and output the results
-			cout << "\n\t\tMINUMUM: " << Findminimum(data2);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
 		}
-		break;
 
-		case 'B':////IN CASE B WE WILL CALCULATE THE MAXIMUM NUMBER IN OUR DATA ARRAY
+		//if the data set is empty when the user attempts to make calculations
+		if (data2.empty())
 		{
-
 			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
-			{
-
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
-
-				cout << endl;
-				cout << endl;
-
-				system("pause");
-
-				break;
-
-			}
-
-			//data is sorted so we can just take the last element in the array using the back() method.
-			cout << "\n\t\tMAXIMUM: " << data2.back();
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'C'://IN CASE C WE WILL CALCULATE THE RANGE FOUND IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
-			{
-
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
-
-				cout << endl;
-				cout << endl;
-
-				system("pause");
-
-				break;
-
-			}
-
-
-			cout << "\n\t\tRange : " << findRange(data2);
-
-
+			cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!";
 
 			cout << endl;
 			cout << endl;
@@ -379,722 +303,439 @@ int main()
 
 
 		}
-		break;
-
-		case 'D'://for case D we will calculate the size of our integer data set
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+		else
+			switch(menuOption())
 			{
+			case 'A'://for case A we will calculate the minimum integer of our integer data set
+			{
+				
+				cout << endl;
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				//we will call our Findminimum function and output the results
+				cout << "\n\t\tMINUMUM: " << Findminimum(data2);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-			cout << endl;
-			//size function will be called and we will output the result
-			cout << "\n\t\tSIZE: " << data2.size() << " DATA INTEGERS";
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-
-		}
-		break;
-
-		case 'E'://IN CASE E WE WILL CALCULATE THE SUM OF THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'B':////IN CASE B WE WILL CALCULATE THE MAXIMUM NUMBER IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				//data is sorted so we can just take the last element in the array using the back() method.
+				cout << "\n\t\tMAXIMUM: " << data2.back();
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-			//We can use the accumulate function from the numeric header
-			//be sure to #include<numeric> 
-			cout << "\n\t\tSUM: " << accumulate(data2.begin(), data2.end(), 0);
-
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-
-		}
-		break;
-
-		case 'F'://IN CASE F WE WILL CALCULATE THE MEAN OF THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'C'://IN CASE C WE WILL CALCULATE THE RANGE FOUND IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tRange : " << findRange(data2);
+
+
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
+			break;
 
-			cout << "\n\t\tMean : " << findMean(data2);
-
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'G'://for case G we will calculate the median of our data set
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'D'://for case D we will calculate the size of our integer data set
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << endl;
+				//size function will be called and we will output the result
+				cout << "\n\t\tSIZE: " << data2.size() << " DATA INTEGERS";
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
+			break;
 
-			cout << endl;
-
-			//we will call the Findmedian function and output our results
-			cout << "\n\t\tMEDIAN: " << Findmedian(data2);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'H'://IN CASE H WE WILL CALCULATE THE MODE OF THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'E'://IN CASE E WE WILL CALCULATE THE SUM OF THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				//We can use the accumulate function from the numeric header
+				//be sure to #include<numeric> 
+				cout << "\n\t\tSUM: " << accumulate(data2.begin(), data2.end(), 0);
+
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
+			break;
 
-			cout << "\n\t\tMODE: " << findMode(data2);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'I'://FOR CASE I WE WILL CALCULATE THE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'F'://IN CASE F WE WILL CALCULATE THE MEAN OF THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tMean : " << findMean(data2);
+
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-
-			cout << "\n\t\tStandard Deviation : " << findStandardDeviation(data2, choice);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'J'://IN CASE J WE WILL CALCULATE THE VARIANCE OF THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'G'://for case G we will calculate the median of our data set
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << endl;
+
+				//we will call the Findmedian function and output our results
+				cout << "\n\t\tMEDIAN: " << Findmedian(data2);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-			if (choice == 1)
+			case 'H'://IN CASE H WE WILL CALCULATE THE MODE OF THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\tVariance of Population: " << variancePopulation(data2);
-
-			}
-			else
-			{
-
-				cout << "\n\tVariance of Sample: " << varianceSample(data2);
-
-			}
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-
-		}
-		break;
-
-		case 'K'://FOR CASE K WE WILL CALCULATE THE MID RANGE FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
-			{
-
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tMODE: " << findMode(data2);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-
-			cout << "\n\t\tMID RANGE: " << midRange(data2);
-
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'L'://FOR CASE L WE WILL CALCULATE THE QUARTILE FOR THE INTEGERS IN OUR DATA ARRAY///
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'I'://FOR CASE I WE WILL CALCULATE THE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+
+				cout << "\n\t\tStandard Deviation : " << findStandardDeviation(data2, choice);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
+			}
+			break;
+
+			case 'J'://IN CASE J WE WILL CALCULATE THE VARIANCE OF THE INTEGERS IN OUR DATA ARRAY
+			{
+
+				if (choice == 1)
+				{
+
+					cout << "\n\tVariance of Population: " << variancePopulation(data2);
+
+				}
+				else
+				{
+
+					cout << "\n\tVariance of Sample: " << varianceSample(data2);
+
+				}
+
+				cout << endl;
+				cout << endl;
+
+				system("pause");
+
 
 			}
+			break;
 
-			cout << "\n\t\tQuartiles : ";
-			double* quartPtr = findQuartiles(data2);
-			double quartiles[3];
-			for (int i = 0; i < 3; i++)
-				quartiles[i] = *(quartPtr + i);
+			case 'K'://FOR CASE K WE WILL CALCULATE THE MID RANGE FOR THE INTEGERS IN OUR DATA ARRAY
+			{
+
+
+				cout << "\n\t\tMID RANGE: " << midRange(data2);
+
+
+				cout << endl;
+				cout << endl;
+
+				system("pause");
+
+			}
+			break;
+
+			case 'L'://FOR CASE L WE WILL CALCULATE THE QUARTILE FOR THE INTEGERS IN OUR DATA ARRAY///
+			{
+
+				cout << "\n\t\tQuartiles : ";
+				double* quartPtr = findQuartiles(data2);
+				double quartiles[3];
+				for (int i = 0; i < 3; i++)
+					quartiles[i] = *(quartPtr + i);
 			
-			for (int i = 0; i < 3; i++)
-			{
+				for (int i = 0; i < 3; i++)
+				{
 
-				cout << quartiles[i];
-				if (i != 2)
-					cout << ", ";
-			}
+					cout << quartiles[i];
+					if (i != 2)
+						cout << ", ";
+				}
 
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'M'://FOR CASE M WE WILL CALCULATE THE INTERQUARTILE RANGE FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
-			{
-
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-
-			////GIOVANNI PUT YOUR CODE HERE FOR INTERQUARTILE RANGE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
-
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'N'://FOR CASE N WE WILL CALCULATE THE OUTLIERS FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'M'://FOR CASE M WE WILL CALCULATE THE INTERQUARTILE RANGE FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+
+				////GIOVANNI PUT YOUR CODE HERE FOR INTERQUARTILE RANGE --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
+
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-
-			////GIOVANNI PUT YOUR CODE HERE FOR OUTLIERS --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
-
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-
-		}
-		break;
-
-		case 'O'://FOR CASE O WE WILL CALCULATE THE SUM OF SQUARES FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'N'://FOR CASE N WE WILL CALCULATE THE OUTLIERS FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+
+				////GIOVANNI PUT YOUR CODE HERE FOR OUTLIERS --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
+
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
+			break;
 
-			cout << "\n\t\tSum of Squares : " << findSumOfSquares(data2);
-
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-
-		}
-		break;
-
-
-		case 'P'://FOR CASE P WE WILL CALCULATE THE MEAN ABSOLUTE DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'O'://FOR CASE O WE WILL CALCULATE THE SUM OF SQUARES FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tSum of Squares : " << findSumOfSquares(data2);
+
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
-
-			cout << "\n\t\tMEAN ABSOLUTE DEVIATION: " << FindMeanAbsoluteDeviation(data2);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
+			break;
 
 
-		}
-		break;
-
-
-		case 'Q'://FOR CASE Q WE WILL CALCULATE THE ROOT MEAN SQUARE FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'P'://FOR CASE P WE WILL CALCULATE THE MEAN ABSOLUTE DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tMEAN ABSOLUTE DEVIATION: " << FindMeanAbsoluteDeviation(data2);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
-
-			cout << "\n\t\tRoot Mean Square: " << rootMeanSquare(data2);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
+			break;
 
 
-		case 'R'://FOR CASE R WE WILL CALCULATE THE STD ERROR OF THE MEAN FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'Q'://FOR CASE Q WE WILL CALCULATE THE ROOT MEAN SQUARE FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tRoot Mean Square: " << rootMeanSquare(data2);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
-
-			cout << "\n\t\tStandard Error of the Mean : " << findSTDErrorOfMean(data2, choice);
-
+			break;
 
 
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-
-		case 'S'://FOR CASE S WE WILL CALCULATE THE SKEWNESS FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'R'://FOR CASE R WE WILL CALCULATE THE STD ERROR OF THE MEAN FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tStandard Error of the Mean : " << findSTDErrorOfMean(data2, choice);
+
+
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
-
-			if (choice == 1)//if the user chooses 1 in part 1 then the population skewness will be calculated
-			{
-				//we will call the FindSkewnessPopulation function and output the result
-				cout << "\n\t\tSKEWNESS: " << FindSkewnessPopulation(data2, choice);
-
-			}
-			else//if the user chooses 1 in part 1 then the population skewness will be calculated
-			{
-				//we will call the FindSkewnessPopulation function and output the result
-				cout << "\n\t\tSKEWNESS: " << FindSkewnessSample(data2, choice);
-
-			}
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
+			break;
 
 
-		}
-		break;
-
-
-		case 'T'://FOR CASE T WE WILL CALCULATE THE KURTOSIS FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'S'://FOR CASE S WE WILL CALCULATE THE SKEWNESS FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				if (choice == 1)//if the user chooses 1 in part 1 then the population skewness will be calculated
+				{
+					//we will call the FindSkewnessPopulation function and output the result
+					cout << "\n\t\tSKEWNESS: " << FindSkewnessPopulation(data2, choice);
+
+				}
+				else//if the user chooses 1 in part 1 then the population skewness will be calculated
+				{
+					//we will call the FindSkewnessPopulation function and output the result
+					cout << "\n\t\tSKEWNESS: " << FindSkewnessSample(data2, choice);
+
+				}
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
+			break;
 
-			if (choice == 1)
+
+			case 'T'://FOR CASE T WE WILL CALCULATE THE KURTOSIS FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				//
-				cout << "\n\tKurtosis of Population: " << findKurtosisPopulation(data2);
+				if (choice == 1)
+				{
 
-			}
-			else
-			{
+					//
+					cout << "\n\tKurtosis of Population: " << findKurtosisPopulation(data2);
 
-				//
-				cout << "\n\tKurtosis of Sample: " << findKurtosisSample(data2);
+				}
+				else
+				{
 
-
-			}
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
+					//
+					cout << "\n\tKurtosis of Sample: " << findKurtosisSample(data2);
 
 
-		}
-		break;
-
-		case 'U'://FOR CASE U WE WILL CALCULATE THE KURTOSIS EXCESS FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
-			{
-
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				}
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
+			break;
 
-			cout << "\n\t\tKurtosis Excess : " << findKurtosisExcess(data2, choice);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-
-		case 'V'://FOR CASE V WE WILL CALCULATE THE COEFFICIENT OF VARIATION FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'U'://FOR CASE U WE WILL CALCULATE THE KURTOSIS EXCESS FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tKurtosis Excess : " << findKurtosisExcess(data2, choice);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-			if (choice == 1)//
-			{
-				//we will call the FindSCoefficientOFVariationPopulation function and output the result
-				cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationPopulation(data2, choice);
 
-			}
-			else//
-			{
-				//we will call the FindSCoefficientOFVariationSample function and output the result
-				cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationSample(data2, choice);
-
-			}
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case 'W'://FOR CASE W WE WILL CALCULATE THE RELATIVE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'V'://FOR CASE V WE WILL CALCULATE THE COEFFICIENT OF VARIATION FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				if (choice == 1)//
+				{
+					//we will call the FindSCoefficientOFVariationPopulation function and output the result
+					cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationPopulation(data2, choice);
+
+				}
+				else//
+				{
+					//we will call the FindSCoefficientOFVariationSample function and output the result
+					cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationSample(data2, choice);
+
+				}
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
-
 			}
+			break;
 
-			cout << "\n\t\tRelative Standard Deviation : " << findRelativeSTDDeviation(data2, choice);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-
-		}
-		break;
-
-		case 'X'://FOR CASE X WE WILL CALCULATE THE FREQUENCIES FOR THE INTEGERS IN OUR DATA ARRAY
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
+			case 'W'://FOR CASE W WE WILL CALCULATE THE RELATIVE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				cout << "\n\t\tRelative Standard Deviation : " << findRelativeSTDDeviation(data2, choice);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
 
 			}
+			break;
+
+			case 'X'://FOR CASE X WE WILL CALCULATE THE FREQUENCIES FOR THE INTEGERS IN OUR DATA ARRAY
+			{
 			
-			//
-			frequencyOfDataSet(data2);
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		case '3'://for case 3 we will ouput all calculations to a text file
-		{
-
-			//if data set is empty we will call out an error so that the user can return to main menu in order to add data to our vector
-			if (data2.empty())
-			{
-
-				cout << "\n\t\tSORRY NO DATA HAS BEEN INPUTTED TO ANALYZE, GO TO OPTION 2 AND TRY AGAIN!!";
+				//
+				frequencyOfDataSet(data2);
 
 				cout << endl;
 				cout << endl;
 
 				system("pause");
 
-				break;
+			}
+			break;
+
+			case '3'://for case 3 we will ouput all calculations to a text file
+			{
+
+				displayData(data2, choice);
+				printDataToFile(data2, choice);
+
+
+				cout << endl;
+				cout << endl;
+
+				system("pause");
 
 			}
+			break;
 
-			displayData(data2, choice);
-			printDataToFile(data2, choice);
-
-
-			cout << endl;
-			cout << endl;
-
-			system("pause");
-
-		}
-		break;
-
-		}
+			}
 
 	} while (true);
 
