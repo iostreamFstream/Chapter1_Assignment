@@ -1419,11 +1419,9 @@ void displayData(vector<int> dataSet, bool isPop)
 		<< "\n\n\t\tStd Error of Mean = " << findSTDErrorOfMean(dataSet, isPop)
 		<< "\n\n\t\tSkewness = " << FindSkewness(dataSet, isPop);
 
-	cout << "\n\n\t\tKurtosis = ";
-	//cout << isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
+	cout << "\n\n\t\tKurtosis = " << findKurtosis(dataSet, isPop);
 	cout << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
-		<< "\n\n\t\tCoefficient of Variation = ";
-	//cout << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
+		<< "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
 	cout << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< "\n\n\t\tFrequency Table";
 
@@ -1488,20 +1486,17 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 
 	}
 
-	//outFile << "\nInterquartile Range = " << findInterQuartRange(dataSet)
-	//	<< "\nOutliers = " << findOutliers(dataSet);
+	/*outFile << "\nInterquartile Range = " << findInterQuartRange(dataSet)
+		<< "\nOutliers = " << findOutliers(dataSet);*/
 	outFile << "\n\n\t\tSum of Squares = " << findSumOfSquares(dataSet)
 		<< "\n\n\t\tMean Absolute Deviation = " << FindMeanAbsoluteDeviation(dataSet)
 		<< "\n\n\t\tRoot Mean Square = " << rootMeanSquare(dataSet)
 		<< "\n\n\t\tStd Error of Mean = " << findSTDErrorOfMean(dataSet, isPop)
-		<< "\n\n\t\tSkewness = ";
-	outFile << FindSkewness(dataSet, isPop);
+		<< "\n\n\t\tSkewness = " << FindSkewness(dataSet, isPop);
 
-	outFile << "\n\n\t\tKurtosis = ";
-	//outFile << isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
+	outFile << "\n\n\t\tKurtosis = " << findKurtosis(dataSet, isPop);
 	outFile << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
-		<< "\n\n\t\tCoefficient of Variation = ";
-	//outFile << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
+		<< "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
 	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< "\n\n\t\tFrequency Table";
 
