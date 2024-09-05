@@ -73,7 +73,8 @@ int main()
 	do
 	{
 
-		switch (menuOption())
+		char menuChoice = menuOption();
+		switch (menuChoice)
 		{
 		case '0'://
 		{
@@ -288,7 +289,8 @@ int main()
 
 		}
 		break;
-		}
+
+		default :
 
 		//if the data set is empty when the user attempts to make calculations
 		if (data2.empty())
@@ -304,7 +306,7 @@ int main()
 
 		}
 		else
-			switch(menuOption())
+			switch(menuChoice)
 			{
 			case 'A'://for case A we will calculate the minimum integer of our integer data set
 			{
@@ -487,17 +489,26 @@ int main()
 
 				cout << "\n\t\tQuartiles : ";
 				double* quartPtr = findQuartiles(data2);
-				double quartiles[3];
-				for (int i = 0; i < 3; i++)
-					quartiles[i] = *(quartPtr + i);
-			
-				for (int i = 0; i < 3; i++)
-				{
 
-					cout << quartiles[i];
-					if (i != 2)
-						cout << ", ";
+				//if the function returns as NULL, this will be displayed as Unknown
+				if (quartPtr[0] == NULL)
+					cout << "Unknown";
+				else
+				{
+					double quartiles[3] = {NULL};
+					for (int i = 0; i < 3; i++)
+						quartiles[i] = *(quartPtr + i);
+			
+					for (int i = 0; i < 3; i++)
+					{
+
+						cout << quartiles[i];
+						if (i != 2)
+							cout << ", ";
+					}
+
 				}
+
 
 
 				cout << endl;
@@ -657,7 +668,15 @@ int main()
 			case 'U'://FOR CASE U WE WILL CALCULATE THE KURTOSIS EXCESS FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tKurtosis Excess : " << findKurtosisExcess(data2, choice);
+				cout << "\n\t\tKurtosis Excess : ";
+				double kurtExcess = findKurtosisExcess(data2, choice);
+				
+
+				if (kurtExcess == -1.0)
+					cout << "Unknown";
+				else
+					cout << kurtExcess;
+
 
 				cout << endl;
 				cout << endl;
@@ -736,6 +755,7 @@ int main()
 			break;
 
 			}
+		}
 
 	} while (true);
 
@@ -1225,10 +1245,16 @@ double findStandardDeviation(vector<int> dataSet, bool isPop)
 }
 
 //pre: : needs the data set
-//post: returns a pointer to a sized 3 array containing the data set's quartiles
+//post: returns a pointer to a sized 3 array containing the data set's quartiles or a "NULL" if the data set is size 3 or less
 double* findQuartiles(vector<int> dataSet)
 {
-	double quartiles[3] = {0.0,0.0,0.0};
+
+	double quartiles[3] = {NULL};
+
+	//if the data set is less than or equal to 3, this will return the array without calculations
+	if (dataSet.size() <= 3)
+		return quartiles;
+
 	vector<int> firstHalf;
 	vector<int> secondHalf;
 	int median = Findmedian(dataSet);
@@ -1283,6 +1309,11 @@ double findSTDErrorOfMean(vector<int> dataSet, bool isPop)
 //post: returns the kurtosis excess of the data set
 double findKurtosisExcess(vector<int> dataSet, bool isPop)
 {
+
+	//if the data set is less than or equal to 3, this will return the array without calculations
+	if (dataSet.size() <= 3)
+		return -1.0;
+
 	double kurtosis = 0.0;
 	kurtosis = isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
 
@@ -1333,15 +1364,21 @@ void displayData(vector<int> dataSet, bool isPop)
 	cout << "\n\n\t\tMid Range = " << midRange(dataSet)
 		<< "\n\n\t\tQuartiles = ";
 	double* quartPtr = findQuartiles(dataSet);
-	double quartiles[3] = {0.0,0.0,0.0};
-	for (int i = 0; i < 3; i++)
-		quartiles[i] = *(quartPtr + i);
-
-	for (int i = 0; i < 3; i++)
+	if (quartPtr[0] == NULL)
+		cout << "Unknown";
+	else
 	{
-		cout << quartiles[i];
-		if (i != 2)
-			cout << ", ";
+		double quartiles[3] = {0.0,0.0,0.0};
+		for (int i = 0; i < 3; i++)
+			quartiles[i] = *(quartPtr + i);
+
+		for (int i = 0; i < 3; i++)
+		{
+			cout << quartiles[i];
+			if (i != 2)
+				cout << ", ";
+		}
+
 	}
 
 	//cout << "\nInterquartile Range = " << findInterQuartRange(dataSet)
@@ -1355,8 +1392,15 @@ void displayData(vector<int> dataSet, bool isPop)
 
 	cout << "\n\n\t\tKurtosis = ";
 	cout << isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
-	cout << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
-		<< "\n\n\t\tCoefficient of Variation = ";
+	cout << "\n\n\t\tKurtosis Excess = ";
+
+	double kurtExcess = findKurtosisExcess(dataSet, isPop);
+	if (kurtExcess == -1.0)
+		cout << "Unknown";
+	else
+		cout << kurtExcess;
+
+	cout << "\n\n\t\tCoefficient of Variation = ";
 	cout << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
 	cout << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< "\n\n\t\tFrequency Table";
@@ -1405,15 +1449,21 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 	outFile << "\n\n\t\tMid Range = " << midRange(dataSet)
 		<< "\n\n\t\tQuartiles = ";
 	double* quartPtr = findQuartiles(dataSet);
-	double quartiles[3] = { 0.0,0.0,0.0 };
-	for (int i = 0; i < 3; i++)
-		quartiles[i] = *(quartPtr + i);
-
-	for (int i = 0; i < 3; i++)
+	if (quartPtr[0] == NULL)
+		outFile << "Unknown";
+	else
 	{
-		outFile << quartiles[i];
-		if (i != 2)
-			outFile << ", ";
+		double quartiles[3] = { 0.0,0.0,0.0 };
+		for (int i = 0; i < 3; i++)
+			quartiles[i] = *(quartPtr + i);
+
+		for (int i = 0; i < 3; i++)
+		{
+			outFile << quartiles[i];
+			if (i != 2)
+				outFile << ", ";
+		}
+
 	}
 
 	//outFile << "\nInterquartile Range = " << findInterQuartRange(dataSet)
@@ -1427,8 +1477,15 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 
 	outFile << "\n\n\t\tKurtosis = ";
 	outFile << isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
-	outFile << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
-		<< "\n\n\t\tCoefficient of Variation = ";
+	outFile << "\n\n\t\tKurtosis Excess = ";
+
+	double kurtExcess = findKurtosisExcess(dataSet, isPop);
+	if (kurtExcess == -1.0)
+		outFile << "Unknown";
+	else
+		outFile << kurtExcess;
+
+	outFile << "\n\n\t\tCoefficient of Variation = ";
 	outFile << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
 	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< "\n\n\t\tFrequency Table";
