@@ -1350,7 +1350,7 @@ void displayData(vector<int> dataSet, bool isPop)
 	cout << isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
 	cout << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
 		<< "\n\n\t\tCoefficient of Variation = ";
-	cout << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
+	//cout << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
 	cout << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< "\n\n\t\tFrequency Table";
 
@@ -1428,7 +1428,7 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 	outFile << isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
 	outFile << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
 		<< "\n\n\t\tCoefficient of Variation = ";
-	outFile << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
+	//outFile << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
 	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< "\n\n\t\tFrequency Table";
 
