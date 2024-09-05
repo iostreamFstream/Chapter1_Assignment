@@ -25,10 +25,8 @@ void DisplayArray(vector<int>& array1);
 int Findminimum(vector<int>& array1);
 double Findmedian(vector<int> array1);
 double FindMeanAbsoluteDeviation(vector<int> array1);
-double FindSkewnessPopulation(vector<int> array1, bool isPop);
-double FindSkewnessSample(vector<int> array1, bool isPop);
-double FindCoefficientOfVariationPopulation(vector<int> array1, bool isPop);
-double FindCoefficientOfVariationSample(vector<int> array1, bool isPop);
+double FindSkewness(vector<int> array1, bool isPop);
+double FindCoefficientOfVariation(vector<int> array1, bool isPop);
 int findMode(vector<int> dataSet);
 double midRange(vector<int> dataSet);
 double rootMeanSquare(vector<int> dataSet);
@@ -603,18 +601,11 @@ int main()
 			case 'S'://FOR CASE S WE WILL CALCULATE THE SKEWNESS FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				if (choice == 1)//if the user chooses 1 in part 1 then the population skewness will be calculated
-				{
-					//we will call the FindSkewnessPopulation function and output the result
-					cout << "\n\t\tSKEWNESS: " << FindSkewnessPopulation(data2, choice);
+				
 
-				}
-				else//if the user chooses 1 in part 1 then the population skewness will be calculated
-				{
-					//we will call the FindSkewnessPopulation function and output the result
-					cout << "\n\t\tSKEWNESS: " << FindSkewnessSample(data2, choice);
+				//we will call the FindSkewnessPopulation function and output the result
+				cout << "\n\t\tSKEWNESS: " << FindSkewness(data2, choice);
 
-				}
 
 				cout << endl;
 				cout << endl;
@@ -671,18 +662,10 @@ int main()
 			case 'V'://FOR CASE V WE WILL CALCULATE THE COEFFICIENT OF VARIATION FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				if (choice == 1)//
-				{
-					//we will call the FindSCoefficientOFVariationPopulation function and output the result
-					cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationPopulation(data2, choice);
+				
 
-				}
-				else//
-				{
-					//we will call the FindSCoefficientOFVariationSample function and output the result
-					cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariationSample(data2, choice);
-
-				}
+				//we will call the FindSCoefficientOFVariationSample function and output the result
+				cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariation(data2, choice);
 
 				cout << endl;
 				cout << endl;
@@ -906,41 +889,10 @@ double FindMeanAbsoluteDeviation(vector<int> array1)
 
 }
 
-//Precondition: We will input vector object into this function
-//Postcondition: After calling out this function our program will return the skewness of our data set based on population calculation
-double FindSkewnessPopulation(vector<int> array1, bool isPop)
-{
-
-	double sum1 = 0.00;//sum1 variable will hold the sum of all integers of our data set subtracted by the mean of our data set
-
-	double calculate = 0.00;//calculate variable will hold subtraction of the integers in our data set by the mean of our data set
-
-	double skewness1 = 0.00;//variable skewness will hold the skewness of our data set
-
-	double std1 = pow((findStandardDeviation(array1, isPop)), 3);//we will calculation the standard deviation
-
-	double sum2 = accumulate(array1.begin(), array1.end(), 0);//we will calculate the sum of the integers in our data set
-
-	double mean = sum2 / (findMean(array1));//we will calculate the mean of our data set
-
-	for (int i = 0; i < array1.size(); i++)//for loop will loop through all of the integers in our data set
-	{
-
-		calculate = pow((array1[i] - mean), 3);//we will subtract the integers of our data set by the mean and raise it to power of 3
-
-		sum1 += calculate;//we will add all numbers calculated from our calculate variable
-
-	}
-
-	skewness1 = (sum1) / (array1.size() * std1);//we will calculate skewmess of the population calculation
-
-	return skewness1;//we will return skewness
-
-}
 
 //Precondition: We will input vector object into this function
 //Postcondition: After calling out this function our program will return the skewness of our data set based on sample calculation
-double FindSkewnessSample(vector<int> array1, bool isPop)
+double FindSkewness(vector<int> array1, bool isPop)
 {
 
 	double sum1 = 0.00;//sum1 variable will hold the sum of all integers of our data set subtracted by the mean of our data set
@@ -953,47 +905,52 @@ double FindSkewnessSample(vector<int> array1, bool isPop)
 
 	double std1 = findStandardDeviation(array1, isPop);//we will calculation the standard deviation
 
+	double std2 = pow(findStandardDeviation(array1, isPop), 3);//
+
 	double sum2 = accumulate(array1.begin(), array1.end(), 0);//we will calculate the sum of the integers in our data set
 
-	double mean = sum2 / (findMean(array1));//we will calculate the mean of our data set
-
-	for (int i = 0; i < array1.size(); i++)//for loop will loop through all of the integers in our data set
+	if(isPop)
 	{
+		
+		for (int i = 0; i < array1.size(); i++)//for loop will loop through all of the integers in our data set
+		{
 
-		calculate = pow(((array1[i] - mean) / (std1)), 3);//we will subtract the integers of our data set by the mean, we will divide this value by the standard deviation and raise it to power of 3
+			calculate = pow((array1[i] - findMean(array1)), 3);//we will subtract the integers of our data set by the mean and raise it to power of 3
 
-		sum1 += calculate;//we will add all numbers calculated from our calculate variable
+			sum1 += calculate;//we will add all numbers calculated from our calculate variable
 
+		}
+
+		skewness1 = (sum1) / (array1.size() * std2);//we will calculate skewmess of the population calculation
+
+		return skewness1;//we will return skewness
+	
+	}
+	else
+	{
+		
+		for (int i = 0; i < array1.size(); i++)//for loop will loop through all of the integers in our data set
+		{
+
+			calculate = pow(((array1[i] - findMean(array1)) / (std1)), 3);//we will subtract the integers of our data set by the mean, we will divide this value by the standard deviation and raise it to power of 3
+
+			sum1 += calculate;//we will add all numbers calculated from our calculate variable
+
+		}
+
+		skewness1 = (array1.size() / calculate3) * (sum1);//we will calculate skewness of the sample calculation
+
+		return skewness1;//we will return skewness
+	
 	}
 
-	skewness1 = (array1.size() / calculate3) * (sum1);//we will calculate skewness of the sample calculation
-
-	return skewness1;//we will return skewness
-
 }
 
-//Precondition: We will input vector object into this function
-//Postcondition: After calling out this function our program will return the coefficient of variation of our data set
-//////////////// based on population calculation
-double FindCoefficientOfVariationPopulation(vector<int> array1, bool isPop)
-{
-
-	double cv1 = 0.00;//
-
-	double sum1 = accumulate(array1.begin(), array1.end(), 0);//
-
-	double mean = sum1 / (findMean(array1));//
-
-	cv1 = findStandardDeviation(array1, isPop) / mean;//
-
-	return cv1;//
-
-}
 
 //Precondition: We will input vector object into this function
 //Postcondition: After calling out this function our program will return the coefficient of variation of our data set
 //////////////// based on sample calculation
-double FindCoefficientOfVariationSample(vector<int> array1, bool isPop)
+double FindCoefficientOfVariation(vector<int> array1, bool isPop)
 {
 
 	double cv1 = 0.00;//
@@ -1002,7 +959,7 @@ double FindCoefficientOfVariationSample(vector<int> array1, bool isPop)
 
 	double mean = sum1 / (findMean(array1));//
 
-	cv1 = findStandardDeviation(array1, isPop) / mean;//
+	cv1 = findStandardDeviation(array1, isPop) / findMean(array1);//
 
 	return cv1;//
 
@@ -1350,14 +1307,12 @@ void displayData(vector<int> dataSet, bool isPop)
 		<< "\n\n\t\tMean Absolute Deviation = " << FindMeanAbsoluteDeviation(dataSet)
 		<< "\n\n\t\tRoot Mean Square = " << rootMeanSquare(dataSet)
 		<< "\n\n\t\tStd Error of Mean = " << findSTDErrorOfMean(dataSet, isPop)
-		<< "\n\n\t\tSkewness = ";
-	cout << isPop ? FindSkewnessPopulation(dataSet, isPop) : FindSkewnessSample(dataSet, isPop);
+		<< "\n\n\t\tSkewness = " << FindSkewness(dataSet, isPop);
 
 	cout << "\n\n\t\tKurtosis = ";
 	cout << isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
-	cout << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
-		<< "\n\n\t\tCoefficient of Variation = ";
-	cout << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
+	cout << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop);
+	cout << "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
 	cout << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< "\n\n\t\tFrequency Table";
 
@@ -1423,13 +1378,13 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 		<< "\n\n\t\tRoot Mean Square = " << rootMeanSquare(dataSet)
 		<< "\n\n\t\tStd Error of Mean = " << findSTDErrorOfMean(dataSet, isPop)
 		<< "\n\n\t\tSkewness = ";
-	outFile << isPop ? FindSkewnessPopulation(dataSet, isPop) : FindSkewnessSample(dataSet, isPop);
+	outFile << FindSkewness(dataSet, isPop);
 
 	outFile << "\n\n\t\tKurtosis = ";
 	outFile << isPop ? findKurtosisPopulation(dataSet) : findKurtosisSample(dataSet);
 	outFile << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
 		<< "\n\n\t\tCoefficient of Variation = ";
-	outFile << isPop ? FindCoefficientOfVariationPopulation(dataSet, isPop) : FindCoefficientOfVariationSample(dataSet, isPop);
+	outFile << FindCoefficientOfVariation(dataSet, isPop);
 	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< "\n\n\t\tFrequency Table";
 
