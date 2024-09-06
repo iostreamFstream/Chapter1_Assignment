@@ -817,14 +817,14 @@ double Findmedian(vector<int> array1)
 
 	double median = 0.00;//variable median will hold the median of our data set
 
-	int index1 = 0;//variable index1 will hold the index of our data with an odd number of integers
+	double index1 = 0.00;//variable index1 will hold the index of our data with an odd number of integers
 
-	int index2 = 0;//variable index2 will hold the index of our data with an even number of integers
+	double index2 = 0.00;//variable index2 will hold the index of our data with an even number of integers
 
 	if (array1.size() % 2 != 0)//if our data set has an odd number of integers then this will calculation will be called
 	{
 
-		index1 = (array1.size() / 2);//we will divide the size of our data set by 2
+		index1 = (array1.size() / 2.00);//we will divide the size of our data set by 2
 
 		median = array1[index1];//we will find the integer at index1
 
@@ -834,11 +834,11 @@ double Findmedian(vector<int> array1)
 	else//if our data set has even number of integers then this calculation will be called
 	{
 
-		index1 = (array1.size() - 1) / (2);//we will divide the size of our data set minus 1 by 2
+		index1 = ((array1.size()) / (2.00)) - 1;//we will divide the size of our data set minus 1 by 2
 
-		index2 = array1.size() / 2;//we will divide the size of our data set by 2
+		index2 = array1.size() / 2.00;//we will divide the size of our data set by 2
 
-		median = ((array1[index1] + array1[index2]) / (2));//we will add the integer located at index1 with index2 and divide the sum by 2
+		median = ((array1[index1] + array1[index2]) / (2.00));//we will add the integer located at index1 with index2 and divide the sum by 2
 
 		return median;//we will return median
 
@@ -1062,41 +1062,53 @@ void frequencyOfDataSet(vector<int> dataSet)
 double findKurtosis(vector<int> dataSet, bool isPop)
 {
 	double kurtosis = 0.0;
-	int size = dataSet.size();
-	double mean = static_cast<double>((accumulate(dataSet.begin(), dataSet.end(), 0))) / size;
 
-	double fourthMoment = 0.0, secondMoment = 0.0;
+	double sum1 = 0.00;
+
+	double sum2 = accumulate(dataSet.begin(), dataSet.end(), 0);
+
+	double calculate1 = 0.00;
+
+	double calculate2 = (dataSet.size()) * (dataSet.size() + 1);
+
+	double calculate3 = (dataSet.size() - 1) * (dataSet.size() - 2) * (dataSet.size() - 3);
+
+	double calculateFinal = calculate2 / calculate3;
+
+	double std1 = pow(findStandardDeviation(dataSet, isPop), 4);
+
+	double std2 = findStandardDeviation(dataSet, isPop);
 
 	if(isPop)
 	{
 		
-		for (double num : dataSet)
+		for(int i = 0; i < dataSet.size(); i++)
 		{
-			fourthMoment += pow(num - mean, 4);
-			secondMoment += pow(num - mean, 2);
+			
+			calculate1 = pow((dataSet[i] - findMean(dataSet)), 4);
+		
+			sum1 += calculate1;
+		
 		}
 
-		fourthMoment /= size;
-		secondMoment /= size;
-
-		kurtosis = (size * fourthMoment) / (secondMoment * secondMoment) - 3;
+		kurtosis = (sum1) / (dataSet.size() * std1);
 
 		return kurtosis;
 	
 	}
 	else
 	{
-	
-		for (double num : dataSet)
+		
+		for (int i = 0; i < dataSet.size(); i++)
 		{
-			fourthMoment += pow(num - mean, 4);
-			secondMoment += pow(num - mean, 2);
+
+			calculate1 = pow(((dataSet[i] - findMean(dataSet)) / (std2)), 4);
+
+			sum1 += calculate1;
+
 		}
 
-		fourthMoment /= size;
-		secondMoment /= (size - 1);
-
-		kurtosis = ((size * (size + 1) * fourthMoment) / ((size - 1) * (size - 2) * pow(secondMoment, 2))) - (3 * (size - 1) * (size - 1)) / ((size - 2) * (size - 3));
+		kurtosis = (sum1) * calculateFinal;
 
 		return kurtosis;
 	
@@ -1221,7 +1233,7 @@ double* findQuartiles(vector<int> dataSet)
 	}
 	else //if the array size is odd
 	{
-		for (int i = 0; i < (dataSet.size() / 2) - 1; i++)
+		for (int i = 0; i < (dataSet.size() / 2); i++)
 			firstHalf.push_back(dataSet[i]);
 
 		for (int i = (dataSet.size() / 2) + 1; i < dataSet.size(); i++)
