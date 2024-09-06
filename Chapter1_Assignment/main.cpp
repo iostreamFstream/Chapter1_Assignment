@@ -417,7 +417,9 @@ int main()
 			case 'H'://IN CASE H WE WILL CALCULATE THE MODE OF THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tMODE: " << findMode(data2);
+				cout << endl;
+
+				findMode(data2);
 
 				cout << endl;
 				cout << endl;
@@ -959,7 +961,7 @@ double FindCoefficientOfVariation(vector<int> array1, bool isPop)
 //Postcondition: returns the number in the data set that occurs most frequently
 int findMode(vector<int> dataSet)
 {
-	unordered_map<int, int> hash;
+	/*unordered_map<int, int> hash;
 	for (int i = 0; i < dataSet.size(); i++)
 		hash[dataSet[i]]++;
 
@@ -973,7 +975,73 @@ int findMode(vector<int> dataSet)
 		}
 	}
 
-	return res;
+	return res;*/
+
+	sort(dataSet.begin(), dataSet.end());
+
+	int mode1 = dataSet[0];
+
+	int num1 = dataSet[0];
+
+	int frequency1 = 0;
+
+	int count1 = 1;
+
+	for(int i = 1; i < dataSet.size(); i++)
+	{
+	
+		if(num1 == dataSet[i])
+		{
+			
+			frequency1++;
+		
+		}
+		else
+		{
+			
+			if(frequency1 > count1)
+			{
+				
+				count1 = frequency1;
+				mode1 = num1;
+			
+			}
+
+			frequency1 = 1;
+
+			num1 = dataSet[i];
+		
+		}
+	
+	}
+
+	if(count1 > 1)
+	{
+		
+		return mode1;
+	
+	}
+	else
+	{
+		
+		cout << "\t\tMODE:    ";
+
+		for (int i = 0; i < dataSet.size(); i++)//we will use for loop to loop through all data in our vector
+		{
+
+			cout << dataSet[i];//using cout we will output all data in vector
+			cout << " ";
+
+		}
+
+		cout << endl;
+
+		cout << "\n\t\tTHIS DATA SET DID NOT HAVE A MODE!!";
+
+		return -1;
+	
+	}
+
 }
 
 //Precondition vector<int>
