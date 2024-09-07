@@ -30,7 +30,7 @@ double FindCoefficientOfVariation(vector<int> array1, bool isPop);
 int findMode(vector<int> dataSet);
 double midRange(vector<int> dataSet);
 double rootMeanSquare(vector<int> dataSet);
-void frequencyOfDataSet(vector<int> dataSet);
+string frequencyOfDataSet(vector<int> dataSet);
 double findKurtosis(vector<int> dataSet, bool isPop);
 double variance(vector<int> dataSet, bool isPop);
 int findRange(vector<int> dataSet);
@@ -44,6 +44,7 @@ double findRelativeSTDDeviation(vector<int> dataSet, bool isPop);
 void displayData(vector<int> dataSet, bool isPop);
 void printDataToFile(vector<int> dataSet, bool isPop);
 double findIQR(vector<int> dataSet);
+vector<int> findOutliers(vector<int> dataSet);
 
 
 int main()
@@ -523,7 +524,25 @@ int main()
 
 
 				////GIOVANNI PUT YOUR CODE HERE FOR OUTLIERS --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
+				vector<int> outliers = findOutliers(data2);
 
+				if (outliers.size() == 0)
+				{
+					cout << "\n\t\tUNKOWN";
+					cout << endl;
+					cout << endl;
+					system("pause");
+					break;
+				}
+
+				string allOutliers = "[";
+
+				for (auto it : outliers)
+				{
+					allOutliers += " " + to_string(it) + ",";
+				}
+				allOutliers += "]";
+				cout << "\n\t\tOUTLIERS: " << allOutliers;
 
 				cout << endl;
 				cout << endl;
@@ -684,7 +703,7 @@ int main()
 			{
 			
 				//
-				frequencyOfDataSet(data2);
+				cout << frequencyOfDataSet(data2);
 
 				cout << endl;
 				cout << endl;
@@ -1107,21 +1126,23 @@ double variance(vector<int> dataSet, bool isPop)
 
 //Precondition: Vector<int>
 //Postcondition: Displays a frequency table of every index in the data set.
-void frequencyOfDataSet(vector<int> dataSet)
+string frequencyOfDataSet(vector<int> dataSet)
 {
 	map<int, int> frequencyMap;
 
 	for (int i = 0; i < dataSet.size(); i++)
 		frequencyMap[dataSet[i]]++;
 
-	cout << "\n\tFrequency Table: \n";
-	cout << "\tVALUE: \t\tFREQUENCY:\t\tFREQUENCY %:\n";
-	cout << "\t" << string(60, 196) << "\n";
+	string strFrequency = "\n\n\t\tFrequency Table: \n";
+	strFrequency += "\t\tVALUE: \t\tFREQUENCY:\t\tFREQUENCY %:\n";
+	strFrequency += "\t\t" + string(60, '=') + "\n";
 
 	for (auto& i : frequencyMap)
 	{
-		cout << "\t" << i.first << " \t\t\t " << i.second << " \t\t\t" << static_cast<float>(i.second) / static_cast<float>(dataSet.size()) * 100 << "%\n";
+		strFrequency += "\t\t" + to_string(i.first) + " \t\t\t " + to_string(i.second) + " \t\t\t" + to_string(static_cast<float>(i.second) / static_cast<float>(dataSet.size()) * 100) + "%\n";
 	}
+
+	return strFrequency;
 }
 
 
@@ -1209,26 +1230,30 @@ double findIQR(vector<int> dataSet)
 }
 
 
-//OUTLIERS: PROTOTYPE:
-//NEED QUARTERLIES FUNCTION FOR THIS!!!
-//vector<int> findOutliers(vector<int> dataSet)
-//{
-//	vector<int> outliers;
-//	double IQR = findIQR(dataSet);
-//	double q3 = findQuarterlies(dataSet);
-//	double q1 = findQuarterlies(dataSet);
-//
-//	double lowerBound = q1 - 1.5 * IQR;
-//	double upperBound = q3 + 1.5 * IQR;
-//
-//	for (double x : dataSet)
-//	{
-//		if (x < lowerBound || x > upperBound)
-//			outliers.push_back(x);
-//	}
-//
-//	return outliers;
-//}
+//Precondition: vector<int>
+//Postcondition: returns a vector containing all the outliers in the dataSet
+vector<int> findOutliers(vector<int> dataSet)
+{
+	vector<int> outliers;
+	if (dataSet.size() < 4)
+		return outliers;
+
+	double IQR = findIQR(dataSet);
+
+	double* quartiles = findQuartiles(dataSet);
+
+	double upperLimit = quartiles[2] + 1.5 * IQR;
+
+	double lowerLimit = quartiles[0] - 1.5 * IQR;
+
+	for (auto it : dataSet)
+	{
+		if (it > upperLimit || it < lowerLimit)
+			outliers.push_back(it);
+	}
+
+	return outliers;
+}
 
 
 
@@ -1428,7 +1453,7 @@ void displayData(vector<int> dataSet, bool isPop)
 	cout << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
 		<< "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
 	cout << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
-		<< "\n\n\t\tFrequency Table";
+		<< frequencyOfDataSet(dataSet);
 
 }
 
@@ -1502,8 +1527,8 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 	outFile << "\n\n\t\tKurtosis = " << findKurtosis(dataSet, isPop);
 	outFile << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
 		<< "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
-	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
-		<< "\n\n\t\tFrequency Table";
+	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%" 
+		<< frequencyOfDataSet(dataSet);
 
 	outFile.close();
 
