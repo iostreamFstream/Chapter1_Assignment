@@ -27,7 +27,7 @@ double Findmedian(vector<int> array1);
 double FindMeanAbsoluteDeviation(vector<int> array1);
 double FindSkewness(vector<int> array1, bool isPop);
 double FindCoefficientOfVariation(vector<int> array1, bool isPop);
-int findMode(vector<int> dataSet);
+string findMode(vector<int> dataSet);
 double midRange(vector<int> dataSet);
 double rootMeanSquare(vector<int> dataSet);
 string frequencyOfDataSet(vector<int> dataSet);
@@ -420,7 +420,7 @@ int main()
 
 				cout << endl;
 
-				findMode(data2);
+				cout << findMode(data2);
 
 				cout << endl;
 				cout << endl;
@@ -523,7 +523,7 @@ int main()
 			{
 
 
-				////GIOVANNI PUT YOUR CODE HERE FOR OUTLIERS --- SAMPLE AND POPULATION CALCULATIONS ARE THE SAME
+				//
 				vector<int> outliers = findOutliers(data2);
 
 				if (outliers.size() == 0)
@@ -978,25 +978,8 @@ double FindCoefficientOfVariation(vector<int> array1, bool isPop)
 
 //Precondition: vector<int>
 //Postcondition: returns the number in the data set that occurs most frequently
-int findMode(vector<int> dataSet)
+string findMode(vector<int> dataSet)
 {
-	/*unordered_map<int, int> hash;
-	for (int i = 0; i < dataSet.size(); i++)
-		hash[dataSet[i]]++;
-
-	int max_count = 0, res = -1;
-	for (auto i : hash)
-	{
-		if (max_count < i.second)
-		{
-			res = i.first;
-			max_count = i.second;
-		}
-	}
-
-	return res;*/
-
-	sort(dataSet.begin(), dataSet.end());
 
 	int mode1 = dataSet[0];
 
@@ -1005,6 +988,12 @@ int findMode(vector<int> dataSet)
 	int frequency1 = 0;
 
 	int count1 = 1;
+
+	string noMode;
+
+	string mode;
+
+	int dataInt = 0;
 
 	for(int i = 1; i < dataSet.size(); i++)
 	{
@@ -1037,27 +1026,26 @@ int findMode(vector<int> dataSet)
 	if(count1 > 1)
 	{
 		
-		return mode1;
+		mode = "\n\t\tMODE: " + to_string(mode1);
+
+		return mode;
 	
 	}
 	else
 	{
 		
-		cout << "\t\tMODE:    ";
+		cout << "\t\tMODE:   ";
 
 		for (int i = 0; i < dataSet.size(); i++)//we will use for loop to loop through all data in our vector
 		{
 
-			cout << dataSet[i];//using cout we will output all data in vector
-			cout << " ";
+			dataInt = dataSet[i];
+
+			noMode += to_string(dataInt) + " ";//using cout we will output all data in vector
 
 		}
 
-		cout << endl;
-
-		cout << "\n\t\tTHIS DATA SET DID NOT HAVE A MODE!!";
-
-		return -1;
+		return noMode;
 	
 	}
 
@@ -1415,7 +1403,7 @@ void displayData(vector<int> dataSet, bool isPop)
 		 << "\n\n\t\tSum = " << accumulate(dataSet.begin(), dataSet.end(), 0)
 		<< "\n\n\t\tMean = " << findMean(dataSet)
 		<< "\n\n\t\tMedian = " << Findmedian(dataSet)
-		<< "\n\n\t\tMode = " << findMode(dataSet);
+		<< "\n\n\t\t" << findMode(dataSet);
 
 	cout << "\n\n\t\tStandard Deviation = " << findStandardDeviation(dataSet, isPop)
 		<< "\n\n\t\tVariance = " << variance(dataSet, isPop);
@@ -1441,8 +1429,32 @@ void displayData(vector<int> dataSet, bool isPop)
 
 	}
 
-	cout << "\nInterquartile Range = " << findIQR(dataSet);
-	//	<< "\nOutliers = " << findOutliers(dataSet);
+	cout << "\n\n\t\tInterquartile Range = " << findIQR(dataSet)
+	   	<< "\t\tOutliers = ";
+
+	vector<int> outliers = findOutliers(dataSet);
+
+	if (outliers.size() == 0)
+	{
+		cout << "\t\tUNKOWN";
+		cout << endl;
+		cout << endl;
+	
+	}
+	else
+	{
+		
+		string allOutliers = "[";
+
+		for (auto it : outliers)
+		{
+			allOutliers += " " + to_string(it) + ",";
+		}
+		allOutliers += "]";
+		cout << "\t\tOUTLIERS: " << allOutliers;
+	
+	}
+
 	cout << "\n\n\t\tSum of Squares = " << findSumOfSquares(dataSet)
 		<< "\n\n\t\tMean Absolute Deviation = " << FindMeanAbsoluteDeviation(dataSet)
 		<< "\n\n\t\tRoot Mean Square = " << rootMeanSquare(dataSet)
@@ -1516,8 +1528,32 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 
 	}
 
-	outFile << "\nInterquartile Range = " << findIQR(dataSet);
-	//	<< "\nOutliers = " << findOutliers(dataSet);
+	outFile << "\n\n\t\tInterquartile Range = " << findIQR(dataSet)
+		<< "\n\n\t\tOutliers = ";
+
+	vector<int> outliers = findOutliers(dataSet);
+
+	if (outliers.size() == 0)
+	{
+		outFile << "\n\t\tUNKOWN";
+		cout << endl;
+		cout << endl;
+
+	}
+	else
+	{
+		
+		string allOutliers = "[";
+
+		for (auto it : outliers)
+		{
+			allOutliers += " " + to_string(it) + ",";
+		}
+		allOutliers += "]";
+		outFile << "\n\n\t\tOUTLIERS: " << allOutliers;
+	
+	}
+
 	outFile << "\n\n\t\tSum of Squares = " << findSumOfSquares(dataSet)
 		<< "\n\n\t\tMean Absolute Deviation = " << FindMeanAbsoluteDeviation(dataSet)
 		<< "\n\n\t\tRoot Mean Square = " << rootMeanSquare(dataSet)
@@ -1529,6 +1565,11 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 		<< "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
 	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%" 
 		<< frequencyOfDataSet(dataSet);
+	cout << endl;
+
+	cout << "\n\t\tYOUR DATA HAS BEEN WRITTEN TO " << fileName << " DATA FILE!!";
+
+	cout << endl;
 
 	outFile.close();
 
