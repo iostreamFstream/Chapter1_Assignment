@@ -312,7 +312,7 @@ int main()
 				cout << endl;
 
 				//we will call our Findminimum function and output the results
-				cout << "\n\t\tMINUMUM: " << Findminimum(data2);
+				cout << "\n\t\tMinimum: " << Findminimum(data2);
 
 				cout << endl;
 				cout << endl;
@@ -326,7 +326,7 @@ int main()
 			{
 
 				//data is sorted so we can just take the last element in the array using the back() method.
-				cout << "\n\t\tMAXIMUM: " << data2.back();
+				cout << "\n\t\tMaximum: " << data2.back();
 
 				cout << endl;
 				cout << endl;
@@ -339,7 +339,7 @@ int main()
 			case 'C'://IN CASE C WE WILL CALCULATE THE RANGE FOUND IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tRange : " << findRange(data2);
+				cout << "\n\t\tRange: " << findRange(data2);
 
 
 
@@ -357,7 +357,7 @@ int main()
 
 				cout << endl;
 				//size function will be called and we will output the result
-				cout << "\n\t\tSIZE: " << data2.size() << " DATA INTEGERS";
+				cout << "\n\t\tSize: " << data2.size() << " Data Integers";
 
 				cout << endl;
 				cout << endl;
@@ -373,7 +373,7 @@ int main()
 
 				//We can use the accumulate function from the numeric header
 				//be sure to #include<numeric> 
-				cout << "\n\t\tSUM: " << accumulate(data2.begin(), data2.end(), 0);
+				cout << "\n\t\tSum: " << accumulate(data2.begin(), data2.end(), 0);
 
 
 				cout << endl;
@@ -388,7 +388,7 @@ int main()
 			case 'F'://IN CASE F WE WILL CALCULATE THE MEAN OF THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tMean : " << findMean(data2);
+				cout << "\n\t\tMean: " << findMean(data2);
 
 
 				cout << endl;
@@ -405,7 +405,7 @@ int main()
 				cout << endl;
 
 				//we will call the Findmedian function and output our results
-				cout << "\n\t\tMEDIAN: " << Findmedian(data2);
+				cout << "\n\t\tMedian: " << Findmedian(data2);
 
 				cout << endl;
 				cout << endl;
@@ -415,12 +415,12 @@ int main()
 			}
 			break;
 
-			case 'H'://IN CASE H WE WILL CALCULATE THE MODE OF THE INTEGERS IN OUR DATA ARRAY
+			case 'H'://IN CASE H WE WILL CALCULATE THE MODE OF THE INTEGERS IN OUR DATA ARRAY  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 			{
 
 				cout << endl;
 
-				cout << findMode(data2);
+				cout << "\n\t\tMode: " << findMode(data2);
 
 				cout << endl;
 				cout << endl;
@@ -434,7 +434,7 @@ int main()
 			{
 
 
-				cout << "\n\t\tStandard Deviation : " << findStandardDeviation(data2, choice);
+				cout << "\n\t\tStandard Deviation: " << findStandardDeviation(data2, choice);
 
 				cout << endl;
 				cout << endl;
@@ -462,7 +462,7 @@ int main()
 			{
 
 
-				cout << "\n\t\tMID RANGE: " << midRange(data2);
+				cout << "\n\t\tMid Range: " << midRange(data2);
 
 
 				cout << endl;
@@ -476,7 +476,7 @@ int main()
 			case 'L'://FOR CASE L WE WILL CALCULATE THE QUARTILE FOR THE INTEGERS IN OUR DATA ARRAY///
 			{
 
-				cout << "\n\t\tQuartiles : ";
+				cout << "\n\t\tQuartiles: ";
 				double* quartPtr = findQuartiles(data2);
 
 				//if the function returns as NULL, this will be displayed as Unknown
@@ -509,7 +509,7 @@ int main()
 			case 'M'://FOR CASE M WE WILL CALCULATE THE INTERQUARTILE RANGE FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tINTERQUARTILE RANGE: " << findIQR(data2);
+				cout << "\n\t\tInterquartile Range: " << findIQR(data2);
 
 				cout << endl;
 				cout << endl;
@@ -526,9 +526,11 @@ int main()
 				//
 				vector<int> outliers = findOutliers(data2);
 
+				cout << "\n\t\tOutliers: ";
+
 				if (outliers.size() == 0)
 				{
-					cout << "\n\t\tUNKOWN";
+					cout << "\t\tUNKOWN";
 					cout << endl;
 					cout << endl;
 					system("pause");
@@ -542,7 +544,7 @@ int main()
 					allOutliers += " " + to_string(it) + ",";
 				}
 				allOutliers += "]";
-				cout << "\n\t\tOUTLIERS: " << allOutliers;
+				cout << allOutliers;
 
 				cout << endl;
 				cout << endl;
@@ -556,7 +558,7 @@ int main()
 			case 'O'://FOR CASE O WE WILL CALCULATE THE SUM OF SQUARES FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tSum of Squares : " << findSumOfSquares(data2);
+				cout << "\n\t\tSum of Squares: " << findSumOfSquares(data2);
 
 
 				cout << endl;
@@ -572,7 +574,7 @@ int main()
 			case 'P'://FOR CASE P WE WILL CALCULATE THE MEAN ABSOLUTE DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tMEAN ABSOLUTE DEVIATION: " << FindMeanAbsoluteDeviation(data2);
+				cout << "\n\t\tMean Absolute Deviation: " << FindMeanAbsoluteDeviation(data2);
 
 				cout << endl;
 				cout << endl;
@@ -601,7 +603,7 @@ int main()
 			case 'R'://FOR CASE R WE WILL CALCULATE THE STD ERROR OF THE MEAN FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tStandard Error of the Mean : " << findSTDErrorOfMean(data2, choice);
+				cout << "\n\t\tStandard Error of the Mean: " << findSTDErrorOfMean(data2, choice);
 
 
 
@@ -620,7 +622,7 @@ int main()
 				
 
 				//we will call the FindSkewnessPopulation function and output the result
-				cout << "\n\t\tSKEWNESS: " << FindSkewness(data2, choice);
+				cout << "\n\t\tSkewness: " << FindSkewness(data2, choice);
 
 
 				cout << endl;
@@ -650,7 +652,7 @@ int main()
 			case 'U'://FOR CASE U WE WILL CALCULATE THE KURTOSIS EXCESS FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tKurtosis Excess : ";
+				cout << "\n\t\tKurtosis Excess: ";
 				double kurtExcess = findKurtosisExcess(data2, choice);
 				
 
@@ -675,7 +677,7 @@ int main()
 				
 
 				//we will call the FindSCoefficientOFVariationSample function and output the result
-				cout << "\n\t\tCOEFFICIENT OF VARIATION: " << FindCoefficientOfVariation(data2, choice);
+				cout << "\n\t\tCoefficient of Variation: " << FindCoefficientOfVariation(data2, choice);
 
 				cout << endl;
 				cout << endl;
@@ -688,7 +690,7 @@ int main()
 			case 'W'://FOR CASE W WE WILL CALCULATE THE RELATIVE STANDARD DEVIATION FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tRelative Standard Deviation : " << findRelativeSTDDeviation(data2, choice);
+				cout << "\n\t\tRelative Standard Deviation: " << findRelativeSTDDeviation(data2, choice);
 
 				cout << endl;
 				cout << endl;
@@ -728,7 +730,6 @@ int main()
 			}
 			break;
 
-			}
 		}
 
 	} while (true);
@@ -1026,15 +1027,13 @@ string findMode(vector<int> dataSet)
 	if(count1 > 1)
 	{
 		
-		mode = "\n\t\tMODE: " + to_string(mode1);
+		mode = to_string(mode1);
 
 		return mode;
 	
 	}
 	else
 	{
-		
-		cout << "\t\tMODE:   ";
 
 		for (int i = 0; i < dataSet.size(); i++)//we will use for loop to loop through all data in our vector
 		{
@@ -1403,7 +1402,7 @@ void displayData(vector<int> dataSet, bool isPop)
 		 << "\n\n\t\tSum = " << accumulate(dataSet.begin(), dataSet.end(), 0)
 		<< "\n\n\t\tMean = " << findMean(dataSet)
 		<< "\n\n\t\tMedian = " << Findmedian(dataSet)
-		<< "\n\n\t\t" << findMode(dataSet);
+		<< "\n\n\t\tMode = " << findMode(dataSet);
 
 	cout << "\n\n\t\tStandard Deviation = " << findStandardDeviation(dataSet, isPop)
 		<< "\n\n\t\tVariance = " << variance(dataSet, isPop);
@@ -1430,13 +1429,13 @@ void displayData(vector<int> dataSet, bool isPop)
 	}
 
 	cout << "\n\n\t\tInterquartile Range = " << findIQR(dataSet)
-	   	<< "\t\tOutliers = ";
+	   	<< "\n\n\t\tOutliers = ";
 
 	vector<int> outliers = findOutliers(dataSet);
 
 	if (outliers.size() == 0)
 	{
-		cout << "\t\tUNKOWN";
+		cout << "\tUnknown";
 		cout << endl;
 		cout << endl;
 	
@@ -1451,11 +1450,11 @@ void displayData(vector<int> dataSet, bool isPop)
 			allOutliers += " " + to_string(it) + ",";
 		}
 		allOutliers += "]";
-		cout << "\t\tOUTLIERS: " << allOutliers;
+		cout << allOutliers;
 	
 	}
 
-	cout << "\n\n\t\tSum of Squares = " << findSumOfSquares(dataSet)
+	cout << "\t\tSum of Squares = " << findSumOfSquares(dataSet)
 		<< "\n\n\t\tMean Absolute Deviation = " << FindMeanAbsoluteDeviation(dataSet)
 		<< "\n\n\t\tRoot Mean Square = " << rootMeanSquare(dataSet)
 		<< "\n\n\t\tStd Error of Mean = " << findSTDErrorOfMean(dataSet, isPop)
@@ -1482,17 +1481,17 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 
 	outFile.open(fileName, ios::out);
 
-	// writing the information onto the file
+
 	outFile << "\tDescriptive statistics summarize certain aspects of a sample data set using numeric calculations.";
-	outFile << "\n\n\tData set contains " << dataSet.size() << " data point(s): ";
+	outFile << "\n\n\tData set contains " << dataSet.size() << " data point(s):\n";
 
 	//displaying the data set elements
 	for (int i = 0; i < dataSet.size(); i++)
 	{
 		outFile << dataSet[i];
+
 		if (i != dataSet.size() - 1)
 			outFile << ", ";
-
 	}
 
 	//displaying all calculations
@@ -1510,6 +1509,7 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 
 	outFile << "\n\n\t\tMid Range = " << midRange(dataSet)
 		<< "\n\n\t\tQuartiles = ";
+
 	double* quartPtr = findQuartiles(dataSet);
 	if (quartPtr[0] == NULL)
 		outFile << "Unknown";
@@ -1535,14 +1535,14 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 
 	if (outliers.size() == 0)
 	{
-		outFile << "\n\t\tUNKOWN";
-		cout << endl;
-		cout << endl;
+		outFile << "\tUNKOWN";
+		outFile << endl;
+		outFile << endl;
 
 	}
 	else
 	{
-		
+
 		string allOutliers = "[";
 
 		for (auto it : outliers)
@@ -1550,11 +1550,11 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 			allOutliers += " " + to_string(it) + ",";
 		}
 		allOutliers += "]";
-		outFile << "\n\n\t\tOUTLIERS: " << allOutliers;
-	
+		outFile << allOutliers;
+
 	}
 
-	outFile << "\n\n\t\tSum of Squares = " << findSumOfSquares(dataSet)
+	outFile << "\t\tSum of Squares = " << findSumOfSquares(dataSet)
 		<< "\n\n\t\tMean Absolute Deviation = " << FindMeanAbsoluteDeviation(dataSet)
 		<< "\n\n\t\tRoot Mean Square = " << rootMeanSquare(dataSet)
 		<< "\n\n\t\tStd Error of Mean = " << findSTDErrorOfMean(dataSet, isPop)
@@ -1563,8 +1563,10 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 	outFile << "\n\n\t\tKurtosis = " << findKurtosis(dataSet, isPop);
 	outFile << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
 		<< "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
-	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%" 
+	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< frequencyOfDataSet(dataSet);
+
+	// display message to user
 	cout << endl;
 
 	cout << "\n\t\tYOUR DATA HAS BEEN WRITTEN TO " << fileName << " DATA FILE!!";
