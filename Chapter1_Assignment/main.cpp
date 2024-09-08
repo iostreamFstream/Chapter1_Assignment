@@ -509,7 +509,12 @@ int main()
 			case 'M'://FOR CASE M WE WILL CALCULATE THE INTERQUARTILE RANGE FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tInterquartile Range: " << findIQR(data2);
+				cout << "\n\t\tInterquartile Range: ";
+				double IQR = findIQR(data2);
+				if (IQR == NULL)
+					cout << "Unknown";
+				else
+					cout <<	IQR;
 
 				cout << endl;
 				cout << endl;
@@ -530,7 +535,7 @@ int main()
 
 				if (outliers.size() == 0)
 				{
-					cout << "\t\tUNKOWN";
+					cout << "Unknown";
 					cout << endl;
 					cout << endl;
 					system("pause");
@@ -638,7 +643,13 @@ int main()
 			case 'T'://FOR CASE T WE WILL CALCULATE THE KURTOSIS FOR THE INTEGERS IN OUR DATA ARRAY
 			{
 
-				cout << "\n\t\tKurtosis: " << findKurtosis(data2, choice);
+				cout << "\n\t\tKurtosis: ";
+				double kurtosis = findKurtosis(data2, choice);
+
+				if (kurtosis == NULL)
+					cout << "Unknown";
+				else
+					cout << kurtosis;
 
 				cout << endl;
 				cout << endl;
@@ -656,7 +667,7 @@ int main()
 				double kurtExcess = findKurtosisExcess(data2, choice);
 				
 
-				if (kurtExcess == -1.0)
+				if (kurtExcess == NULL)
 					cout << "Unknown";
 				else
 					cout << kurtExcess;
@@ -1155,7 +1166,9 @@ double findKurtosis(vector<int> dataSet, bool isPop)
 
 	double std2 = findStandardDeviation(dataSet, isPop);
 
-	if(isPop)
+	if (dataSet.size() == 3)
+		return NULL;
+	else if(isPop)
 	{
 		
 		for(int i = 0; i < dataSet.size(); i++)
@@ -1203,7 +1216,7 @@ double findIQR(vector<int> dataSet)
 
 	//if the function returns as NULL, this will be displayed as Unknown
 	if (Ptr1[0] == NULL)
-		cout << "Unknown";
+		return NULL;
 	else
 	{
 		double quartiles[3] = { NULL };
@@ -1359,7 +1372,7 @@ double findKurtosisExcess(vector<int> dataSet, bool isPop)
 
 	//if the data set is less than or equal to 3, this will return the array without calculations
 	if (dataSet.size() <= 3)
-		return -1.0;
+		return NULL;
 
 	double kurtosis = 0.0;
 	kurtosis = findKurtosis(dataSet, isPop);
@@ -1428,14 +1441,19 @@ void displayData(vector<int> dataSet, bool isPop)
 
 	}
 
-	cout << "\n\n\t\tInterquartile Range = " << findIQR(dataSet)
-	   	<< "\n\n\t\tOutliers = ";
+	cout << "\n\n\t\tInterquartile Range = ";
+	if (quartPtr[0] == NULL)
+		cout << "Unknown";
+	else
+		cout << findIQR(dataSet);
+
+	cout << "\n\n\t\tOutliers = ";
 
 	vector<int> outliers = findOutliers(dataSet);
 
 	if (outliers.size() == 0)
 	{
-		cout << "\tUnknown";
+		cout << "Unknown";
 		cout << endl;
 		cout << endl;
 	
@@ -1450,7 +1468,7 @@ void displayData(vector<int> dataSet, bool isPop)
 			allOutliers += " " + to_string(it) + ",";
 		}
 		allOutliers += "]";
-		cout << allOutliers;
+		cout << allOutliers << endl;
 	
 	}
 
@@ -1460,7 +1478,17 @@ void displayData(vector<int> dataSet, bool isPop)
 		<< "\n\n\t\tStd Error of Mean = " << findSTDErrorOfMean(dataSet, isPop)
 		<< "\n\n\t\tSkewness = " << FindSkewness(dataSet, isPop);
 
-	cout << "\n\n\t\tKurtosis = " << findKurtosis(dataSet, isPop);
+	cout << "\n\n\t\tKurtosis = ";
+	double kurtosis = findKurtosis(dataSet, isPop);
+	if (kurtosis == NULL)
+		cout << "Unknown";
+	else
+		cout << kurtosis;
+	cout << "\n\n\t\tKurtosis Excess = ";
+	if (kurtosis == NULL)
+		cout << "Unkown";
+	else
+		cout << findKurtosisExcess(dataSet, isPop);
 	cout << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
 		<< "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
 	cout << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
@@ -1528,14 +1556,19 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 
 	}
 
-	outFile << "\n\n\t\tInterquartile Range = " << findIQR(dataSet)
-		<< "\n\n\t\tOutliers = ";
+	outFile << "\n\n\t\tInterquartile Range = ";
+	if (quartPtr[0] == NULL)
+		outFile << "Unknown";
+	else
+		outFile << findIQR(dataSet);
+
+	outFile << "\n\n\t\tOutliers = ";
 
 	vector<int> outliers = findOutliers(dataSet);
 
 	if (outliers.size() == 0)
 	{
-		outFile << "\tUNKOWN";
+		outFile << "Unknown";
 		outFile << endl;
 		outFile << endl;
 
@@ -1550,7 +1583,7 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 			allOutliers += " " + to_string(it) + ",";
 		}
 		allOutliers += "]";
-		outFile << allOutliers;
+		outFile << allOutliers << endl;
 
 	}
 
@@ -1560,9 +1593,19 @@ void printDataToFile(vector<int> dataSet, bool isPop)
 		<< "\n\n\t\tStd Error of Mean = " << findSTDErrorOfMean(dataSet, isPop)
 		<< "\n\n\t\tSkewness = " << FindSkewness(dataSet, isPop);
 
-	outFile << "\n\n\t\tKurtosis = " << findKurtosis(dataSet, isPop);
-	outFile << "\n\n\t\tKurtosis Excess = " << findKurtosisExcess(dataSet, isPop)
-		<< "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
+	outFile << "\n\n\t\tKurtosis = ";
+	double kurtosis = findKurtosis(dataSet, isPop);
+	if (kurtosis == NULL)
+		outFile << "Unknown";
+	else
+		outFile << kurtosis;
+	outFile << "\n\n\t\tKurtosis Excess = ";
+	if (kurtosis == NULL)
+		outFile << "Unkown";
+	else
+		outFile << findKurtosisExcess(dataSet, isPop);
+
+	outFile << "\n\n\t\tCoefficient of Variation = " << FindCoefficientOfVariation(dataSet, isPop);
 	outFile << "\n\n\t\tRelative Standard Deviation = " << findRelativeSTDDeviation(dataSet, isPop) << "%"
 		<< frequencyOfDataSet(dataSet);
 
